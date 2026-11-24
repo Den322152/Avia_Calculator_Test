@@ -1355,6 +1355,105 @@
         max-width: none !important;
       }
     }
+  
+    /* === ENG training === */
+    #main-eng { gap: 12px; }
+    .eng-intro { background: linear-gradient(135deg,#172b46,#111c30); border:1px solid #294767; border-radius:14px; padding:14px; }
+    .eng-intro-toggle { width:100%; display:flex; align-items:center; justify-content:space-between; padding:0; border:0; background:transparent; color:inherit; cursor:pointer; text-align:left; }
+    .eng-intro-chevron { color:#93c5fd; font-size:22px; line-height:1; transition:transform .18s ease; }
+    .eng-intro-toggle[aria-expanded="true"] .eng-intro-chevron { transform:rotate(180deg); }
+    .eng-kicker { color:#60a5fa; font-size:10px; font-weight:900; letter-spacing:1.5px; }
+    .eng-heading { color:#f8fafc; font-size:19px; font-weight:900; margin:4px 0 5px; }
+    .eng-description { color:#aebed1; font-size:12px; line-height:1.5; }
+    .eng-topic-tabs { display:flex; gap:6px; overflow-x:auto; padding:1px 1px 6px; scrollbar-width:thin; }
+    .eng-topic-btn { flex:0 0 auto; border:1px solid #334155; background:#1e293b; color:#cbd5e1; border-radius:9px; padding:9px 11px; font-size:11px; font-weight:800; }
+    .eng-topic-btn.active { background:#c8102e; color:white; border-color:#c8102e; }
+    .eng-panel { background:#111d2e; border:1px solid #293b53; border-radius:13px; padding:12px; }
+    .eng-panel-title { color:#f1f5f9; font-size:14px; font-weight:900; margin-bottom:9px; }
+    .eng-lesson-list { display:flex; flex-direction:column; gap:7px; }
+    .eng-lesson-btn { display:flex; align-items:center; justify-content:space-between; gap:8px; width:100%; text-align:left; background:#1b2a3e; border:1px solid #34465d; border-radius:10px; color:#dbeafe; padding:11px; font-size:12px; font-weight:700; }
+    .eng-lesson-btn.active { border-color:#60a5fa; background:#203954; }
+    .eng-lesson-btn small { color:#94a3b8; font-size:10px; font-weight:600; }
+    .eng-stepbar { display:flex; gap:6px; }
+    .eng-step { flex:1; padding:11px 7px; border-radius:9px; text-align:center; font-size:12px; font-weight:900; color:#cbd5e1; background:#1e293b; border:1px solid #475569; cursor:pointer; font-family:inherit; letter-spacing:.2px; transition:background .15s,border-color .15s,color .15s; }
+    .eng-step:focus-visible { outline:2px solid #7dd3fc; outline-offset:2px; }
+    .eng-step.active { color:#fff; background:#254768; border-color:#60a5fa; }
+    .eng-word { padding:11px 0; border-bottom:1px solid #29384c; }
+    .eng-word:last-child { border-bottom:0; }
+    .eng-word-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+    .eng-term { color:#f8fafc; font-size:15px; font-weight:900; }
+    .eng-translation { color:#7dd3fc; font-size:12px; font-weight:700; text-align:right; }
+    .eng-example { color:#aab8ca; font-size:11px; line-height:1.45; margin-top:5px; }
+    .eng-example b { color:#e2e8f0; }
+    .eng-action { width:100%; padding:12px; border:0; border-radius:10px; background:#c8102e; color:white; font-size:12px; font-weight:900; margin-top:10px; }
+    .eng-secondary { background:#26384f; border:1px solid #415670; }
+    .eng-reading { color:#e2e8f0; font-size:15px; line-height:1.85; white-space:pre-line; }
+    .eng-prompt-ru, #engQuizPrompt { color:#d1fae5 !important; background:linear-gradient(135deg,#123d2c,#174b35) !important; border:1px solid #36a66b !important; box-shadow:0 0 0 1px rgba(54,166,107,.12),0 5px 18px rgba(0,0,0,.18); }
+    .eng-reading-counter { color:#9fe3b9; font-size:13px; font-weight:900; margin:8px 0 12px; text-align:center; }
+    .eng-reading-nav { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .eng-reading-nav .eng-action { margin-top:10px; }
+    .eng-reading-translation { color:#9fb0c4; font-size:11px; line-height:1.55; border-top:1px solid #34465d; margin-top:10px; padding-top:9px; }
+    .eng-task { color:#cbd5e1; font-size:12px; line-height:1.5; margin:7px 0; }
+    .eng-textarea { width:100%; min-height:120px; resize:vertical; border:1px solid #40536c; border-radius:10px; background:#0b1524; color:#f8fafc; padding:11px; font-family:inherit; font-size:13px; line-height:1.5; }
+    .eng-feedback { color:#bae6fd; background:#102b40; border:1px solid #24516d; border-radius:9px; padding:10px; font-size:11px; line-height:1.5; margin-top:8px; }
+    .eng-hidden { display:none !important; }
+    .eng-progress { color:#94a3b8; font-size:10px; margin-top:7px; }
+
+    .eng-exercise-card { margin-top:9px; padding:12px; border:1px solid #344b66; border-radius:12px; background:linear-gradient(160deg,#14263b,#0c1727); }
+    .eng-exercise-top { display:flex; justify-content:space-between; gap:8px; color:#8fb5d8; font-size:10px; font-weight:800; margin-bottom:12px; }
+    .eng-prompt-ru { color:#f8fafc; font-size:15px; line-height:1.5; font-weight:800; min-height:48px; padding:11px; border-radius:9px; background:#1b3048; border:1px solid #34516f; }
+    .eng-answer-words { display:flex; flex-wrap:wrap; gap:6px; align-content:flex-start; min-height:54px; margin:12px 0; padding:8px; border:1px dashed #49627e; border-radius:9px; background:#0b1524; }
+    .eng-answer-empty { color:#71869e; font-size:11px; align-self:center; }
+    .eng-word-chip { border:1px solid #4d7194; border-radius:7px; background:#244361; color:#fff; padding:8px 9px; font-size:12px; font-weight:800; }
+    .eng-word-bank { display:flex; flex-wrap:wrap; gap:7px; justify-content:center; }
+    .eng-bank-word { border:1px solid #45617f; border-radius:8px; background:#1c2d43; color:#e5f1ff; padding:9px 10px; font-size:12px; font-weight:800; }
+    .eng-bank-word:disabled { opacity:.25; }
+    .eng-exercise-feedback { margin-top:11px; padding:10px; border-radius:9px; background:#102b40; border:1px solid #286083; color:#c7eaff; font-size:12px; line-height:1.5; }
+    .eng-exercise-feedback.fail { background:#351c27; border-color:#854052; color:#ffd4dc; }
+    .eng-lesson-complete { margin-top:12px; padding:13px; border:1px solid #34775f; border-radius:10px; background:#102d2a; color:#c7f9df; font-size:12px; line-height:1.5; }
+    .eng-lesson-btn:disabled { opacity:.45; cursor:not-allowed; }
+    .eng-lesson-btn .eng-lock { color:#94a3b8; }
+
+
+
+    /* ENG readability and learning stages */
+    #main-eng { color:#f1f5f9; font-size:15px; }
+    .eng-heading { font-size:22px; line-height:1.25; }
+    .eng-description,.eng-task { font-size:14px; line-height:1.65; }
+    .eng-panel { padding:15px; }
+    .eng-panel-title { font-size:17px; line-height:1.35; }
+    .eng-topic-btn { font-size:13px; padding:11px 13px; }
+    .eng-lesson-btn { font-size:14px; padding:14px 12px; }
+    .eng-lesson-btn small { font-size:12px; }
+    .eng-stepbar-four { flex-wrap:wrap; }
+    .eng-stepbar-four .eng-step { min-width:calc(50% - 6px); font-size:12px; padding:10px 5px; }
+    .eng-vocab-card { border:1px solid #3c5876; background:linear-gradient(145deg,#1a3049,#101d30); border-radius:13px; padding:18px 15px; min-height:180px; display:flex; flex-direction:column; justify-content:center; gap:12px; }
+    .eng-vocab-term { color:#fff; font-size:clamp(22px,5vw,30px); line-height:1.25; font-weight:900; overflow-wrap:anywhere; }
+    .eng-vocab-translation { color:#7dd3fc; font-size:18px; line-height:1.4; font-weight:800; }
+    .eng-vocab-example { color:#e2e8f0; font-size:14px; line-height:1.6; }
+    .eng-vocab-example-ru { color:#aebed1; font-size:13px; line-height:1.55; }
+    .eng-vocab-controls { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .eng-vocab-controls .eng-action { margin-top:10px; font-size:14px; padding:14px 8px; }
+    .eng-know { background:#176b50; }
+    .eng-learn { background:#33465f; border:1px solid #526982; }
+    .eng-quiz-options { display:grid; grid-template-columns:1fr; gap:9px; margin-top:12px; }
+    .eng-quiz-option { width:100%; text-align:left; border:1px solid #45617f; border-radius:10px; background:#1c2d43; color:#f1f5f9; padding:14px; font-size:15px; line-height:1.4; font-weight:700; }
+    .eng-quiz-option:disabled { opacity:1; cursor:default; }
+    .eng-quiz-option.correct { background:#145c42; border:2px solid #35c98b; color:#eafff4; }
+    .eng-quiz-option.wrong { background:#672b36; border:2px solid #ef6478; color:#fff0f2; }
+    #engQuizPrompt { display:block; margin:12px 0 20px; padding:17px 14px; min-height:58px; border-radius:12px; border:2px solid #279b69; background:linear-gradient(145deg,#123c30,#102b2b); color:#8ff0bd; font-size:clamp(21px,5vw,27px); line-height:1.35; font-weight:900; text-align:center; box-shadow:0 5px 16px rgba(0,0,0,.22); }
+    #engQuizOptions { margin-top:0; padding-top:14px; border-top:1px solid #354b61; }
+    #engQuizNext { width:100%; margin-top:14px; }
+    .eng-action { font-size:14px; padding:14px; }
+    .eng-reading { font-size:16px; line-height:1.8; }
+    .eng-reading-translation { font-size:14px; line-height:1.7; }
+    .eng-prompt-ru { font-size:16px; line-height:1.6; }
+    .eng-answer-words { gap:8px; min-height:62px; padding:10px; }
+    .eng-word-chip,.eng-bank-word { font-size:14px; padding:11px 12px; line-height:1.3; }
+    .eng-exercise-top { font-size:12px; }
+    .eng-exercise-feedback { font-size:14px; line-height:1.6; }
+    @media(max-width:380px){ .eng-panel{padding:11px;} .eng-vocab-card{padding:14px 12px;} .eng-vocab-translation{font-size:16px;} }
+
   </style>
 </head>
 <body>
@@ -1380,6 +1479,7 @@
       <button class="main-tab-btn" id="btnMainWind" onclick="switchMainTab('main-wind', this)">Wind</button>
       <button class="main-tab-btn" id="btnMainTemp" onclick="switchMainTab('main-temp', this)">Temp</button>
       <button class="main-tab-btn" id="btnMainHot" onclick="switchMainTab('main-hot', this)">HOT</button>
+      <button class="main-tab-btn" id="btnMainEng" onclick="switchMainTab('main-eng', this)">ENG</button>
     </div>
 
     <!-- ==================== FUEL ==================== -->
@@ -1738,6 +1838,71 @@
       <div class="dot active" title="Загружено"></div>
       <div class="dot active" title="Версия 3"></div>
       <span class="version-text">v3.0</span>
+    </div>
+
+
+    <!-- ==================== ENG ==================== -->
+    <div id="main-eng" class="main-tab-content">
+      <div class="eng-intro">
+        <button type="button" class="eng-intro-toggle" aria-expanded="false" onclick="engToggleIntro(this)">
+          <span class="eng-kicker">AVIATION ENGLISH TRAINER</span>
+          <span class="eng-intro-chevron" aria-hidden="true">⌄</span>
+        </button>
+        <div class="eng-heading">ENG · Авиационный английский</div>
+        <div class="eng-description eng-hidden" id="engIntroDescription">Курс лексики и практики для подготовки к ICAO English: авиационные темы, рабочие ситуации, метеоусловия, взаимодействие экипажа и описание нештатных ситуаций.</div>
+      </div>
+      <div id="engTopicTabs" class="eng-topic-tabs"></div>
+      <div class="eng-panel">
+        <div class="eng-panel-title">Уроки темы</div>
+        <div id="engLessonList" class="eng-lesson-list"></div>
+      </div>
+      <div id="engLessonArea" class="eng-panel eng-hidden">
+        <div id="engLessonTitle" class="eng-panel-title"></div>
+        <div class="eng-stepbar eng-stepbar-four" aria-label="Выбор режима обучения">
+          <button type="button" id="engStepWords" class="eng-step active" onclick="engNavigateStage(0)">СЛОВА</button>
+          <button type="button" id="engStepQuiz" class="eng-step" onclick="engNavigateStage(1)">ПРОВЕРКА СЛОВ</button>
+          <button type="button" id="engStepReading" class="eng-step" onclick="engNavigateStage(2)">ЧТЕНИЕ</button>
+          <button type="button" id="engStepBuild" class="eng-step" onclick="engNavigateStage(3)">ПРЕДЛОЖЕНИЯ</button>
+        </div>
+        <div id="engWordsArea">
+          <p class="eng-task">Сначала спокойно просмотри каждую карточку. Если слово уже знакомо, нажми «ЗНАЮ» — оно будет попадаться реже в проверках. Незнакомые слова отметь «УЧИТЬ».</p>
+          <div id="engWordCard" class="eng-vocab-card"></div>
+          <div class="eng-vocab-controls"><button class="eng-action eng-know" id="engKnowButton" onclick="engMarkWord(true)">ЗНАЮ</button><button class="eng-action eng-learn" id="engLearnButton" onclick="engMarkWord(false)">УЧИТЬ</button></div>
+          <div class="eng-progress" id="engWordsCount"></div>
+        </div>
+        <div id="engQuizArea" class="eng-hidden">
+          <div class="eng-panel-title" id="engQuizTitle">Проверка слов</div>
+          <p class="eng-task" id="engQuizInstruction">Выбери правильный перевод.</p>
+          <div class="eng-exercise-card">
+            <div class="eng-exercise-top"><span id="engQuizProgress"></span><span id="engQuizDirection"></span></div>
+            <div id="engQuizPrompt" class="eng-prompt-ru"></div>
+            <div id="engQuizOptions" class="eng-quiz-options"></div>
+            <div id="engQuizFeedback" class="eng-exercise-feedback eng-hidden"></div>
+            <button id="engQuizNext" class="eng-action eng-hidden" onclick="engQuizContinue()">Далее</button>
+          </div>
+        </div>
+        <div id="engReadingArea" class="eng-hidden">
+          <div class="eng-panel-title">READING · Прочитай текст</div>
+          <div class="eng-reading-counter" id="engReadingCounter">Текст 1 из 10</div>
+          <div id="engReadingText" class="eng-reading"></div>
+          <button class="eng-action eng-secondary" onclick="engToggleTranslation()" id="engTranslationButton">Показать перевод</button>
+          <div id="engReadingTranslation" class="eng-reading-translation eng-hidden"></div>
+          <div class="eng-reading-nav"><button type="button" class="eng-action eng-secondary" id="engReadingPrev" onclick="engChangeReading(-1)">Назад</button><button type="button" class="eng-action eng-secondary" id="engReadingNext" onclick="engChangeReading(1)">Следующий текст</button></div>
+          <button class="eng-action" onclick="engStartSentences()">Перейти к составлению предложений</button>
+        </div>
+        <div id="engBuildArea" class="eng-hidden">
+          <div class="eng-panel-title">BUILD THE SENTENCE · Собери предложение</div>
+          <div class="eng-exercise-card">
+            <div class="eng-exercise-top"><span id="engExerciseProgress">Предложение 1 из 100</span><span id="engExerciseScore">Нужно 90% правильных</span></div>
+            <div id="engPromptRu" class="eng-prompt-ru"></div>
+            <div id="engAnswerWords" class="eng-answer-words"></div>
+            <div id="engWordBank" class="eng-word-bank"></div>
+            <div id="engExerciseFeedback" class="eng-exercise-feedback eng-hidden"></div>
+            <button id="engExerciseAction" class="eng-action eng-hidden" onclick="engExerciseContinue()">Следующее предложение</button>
+          </div>
+          <div id="engLessonComplete" class="eng-lesson-complete eng-hidden"></div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -3957,7 +4122,483 @@ function resetStopwatch() {
   resetStopwatchDisplay();
 }
 
-/* INIT */
+
+    // ============================================
+    // ENG — авиационный английский: уроки и практика
+    // ============================================
+    const engCourse = [
+      { id:'airport', name:'Аэропорт', lessons:[
+        { title:'Регистрация и посадка', words:[
+          ['check-in counter','стойка регистрации','Passengers should proceed to the check-in counter.','Пассажирам следует пройти к стойке регистрации.'],
+          ['boarding pass','посадочный талон','Please have your boarding pass ready.','Пожалуйста, приготовьте посадочный талон.'],
+          ['departure gate','выход на посадку','The departure gate has been changed.','Выход на посадку был изменён.'],
+          ['boarding','посадка на борт','Boarding will begin in twenty minutes.','Посадка начнётся через двадцать минут.'],
+          ['carry-on baggage','ручная кладь','Carry-on baggage must fit under the seat or in the overhead bin.','Ручная кладь должна помещаться под кресло или на багажную полку.'],
+          ['baggage claim','выдача багажа','Passengers can collect their bags at baggage claim.','Пассажиры могут получить багаж в зоне выдачи.']
+        ], reading:'Passengers are waiting in the departure lounge. The airline has announced a gate change. They must check the information screens and proceed to the new departure gate. Boarding will start shortly. Passengers should keep their boarding passes ready and make sure that their carry-on baggage complies with the requirements.', translation:'Пассажиры ожидают в зале вылета. Авиакомпания объявила о смене выхода. Им необходимо проверить информацию на табло и пройти к новому выходу на посадку. Посадка скоро начнётся. Пассажирам следует приготовить посадочные талоны и убедиться, что их ручная кладь соответствует требованиям.', task:'Напиши 4–6 предложений на английском: объяви о смене выхода на посадку, попроси пассажиров проверить табло и подготовить посадочные талоны.', required:['gate','boarding','passengers'] },
+        { title:'Наземное обслуживание', words:[
+          ['ground handling','наземное обслуживание','Ground handling includes several services provided to an aircraft.','Наземное обслуживание включает ряд услуг, предоставляемых воздушному судну.'],
+          ['pushback','буксировка от стоянки','The aircraft is ready for pushback.','Воздушное судно готово к буксировке.'],
+          ['marshaller','сигнальщик','The marshaller is guiding the aircraft to the stand.','Сигнальщик направляет самолёт на стоянку.'],
+          ['ground power unit (GPU)','наземный источник электропитания','The GPU is connected to the aircraft.','Наземный источник электропитания подключён к самолёту.'],
+          ['refuelling','заправка топливом','Refuelling is carried out by the ground crew.','Заправка выполняется наземным персоналом.'],
+          ['aircraft stand','место стоянки воздушного судна','The aircraft is parked on stand 24.','Самолёт находится на стоянке 24.']
+        ], reading:'After arrival, the aircraft is parked on the assigned stand. The ground crew connects the ground power unit and starts the required ground handling procedures. Once all checks are completed and the aircraft is ready for departure, the crew requests pushback clearance. The marshaller provides visual guidance.', translation:'После прибытия самолёт устанавливается на назначенное место стоянки. Наземный персонал подключает наземный источник электропитания и начинает необходимые процедуры обслуживания. После завершения всех проверок и готовности самолёта к вылету экипаж запрашивает разрешение на буксировку. Сигнальщик обеспечивает визуальное сопровождение.', task:'Опиши подготовку самолёта к вылету на стоянке. Используй не менее четырёх новых выражений.', required:['ground','stand','pushback'] }
+      ]},
+      { id:'aircraft', name:'Самолёт', lessons:[
+        { title:'Основные части самолёта', words:[
+          ['fuselage','фюзеляж','The fuselage contains the passenger cabin and cargo compartments.','Фюзеляж включает пассажирскую кабину и грузовые отсеки.'],
+          ['wing','крыло','The wings provide lift during flight.','Крылья создают подъёмную силу в полёте.'],
+          ['landing gear','шасси','The landing gear is extended before landing.','Шасси выпускается перед посадкой.'],
+          ['flap','закрылок','The flaps are extended during the approach.','Закрылки выпускаются на заходе на посадку.'],
+          ['spoiler','интерцептор / спойлер','Spoilers reduce lift and increase drag.','Интерцепторы уменьшают подъёмную силу и увеличивают сопротивление.'],
+          ['engine nacelle','мотогондола','The engine nacelle is inspected during the walk-around.','Мотогондола осматривается во время предполётного обхода.']
+        ], reading:'During the pre-flight walk-around, the pilot inspects the aircraft structure. Particular attention is paid to the fuselage, wings, landing gear and engine nacelles. The pilot also checks the condition of the flaps and spoilers and looks for any visible damage or leaks.', translation:'Во время предполётного обхода пилот осматривает конструкцию самолёта. Особое внимание уделяется фюзеляжу, крыльям, шасси и мотогондолам двигателей. Пилот также проверяет состояние закрылков и интерцепторов, обращая внимание на видимые повреждения и утечки.', task:'Составь короткое описание предполётного обхода самолёта, перечислив проверяемые элементы.', required:['walk-around','wings','landing gear'] },
+        { title:'Системы самолёта', words:[
+          ['hydraulic system','гидравлическая система','The hydraulic system supplies power to several aircraft systems.','Гидравлическая система обеспечивает работу нескольких систем самолёта.'],
+          ['electrical system','электрическая система','The electrical system has several power sources.','Электрическая система имеет несколько источников питания.'],
+          ['flight control system','система управления полётом','The flight control system controls the aircraft around its axes.','Система управления полётом управляет самолётом относительно его осей.'],
+          ['bleed air','отбираемый воздух','Bleed air is used by several aircraft systems.','Отбираемый воздух используется несколькими системами самолёта.'],
+          ['pressurization','герметизация / поддержание давления','The pressurization system maintains cabin altitude.','Система герметизации поддерживает высоту в кабине.'],
+          ['indication','индикация / показание','The indication is monitored by the flight crew.','Индикация контролируется лётным экипажем.']
+        ], reading:'Modern transport aircraft use several systems to ensure safe operation. The hydraulic system provides power for selected components, while the electrical system supplies equipment and instruments. The pressurization system maintains a comfortable cabin environment. The flight crew monitors system indications throughout the flight.', translation:'Современные транспортные самолёты используют несколько систем для обеспечения безопасной эксплуатации. Гидравлическая система обеспечивает энергией отдельные агрегаты, а электрическая система питает оборудование и приборы. Система герметизации поддерживает комфортные условия в кабине. Экипаж контролирует индикацию систем на протяжении всего полёта.', task:'Объясни простыми английскими предложениями назначение двух систем самолёта.', required:['system','crew','indication'] }
+      ]},
+      { id:'flight', name:'Этапы полёта', lessons:[
+        { title:'От запуска до набора высоты', words:[
+          ['engine start','запуск двигателя','The crew is ready for engine start.','Экипаж готов к запуску двигателя.'],
+          ['taxi','руление','The aircraft is taxiing to the holding point.','Самолёт рулит к предварительному.'],
+          ['take-off','взлёт','The take-off clearance has been received.','Разрешение на взлёт получено.'],
+          ['rotation','подъём носовой стойки / ротация','Rotation is initiated at the calculated speed.','Ротация начинается на расчётной скорости.'],
+          ['climb','набор высоты','The aircraft is climbing to the assigned altitude.','Самолёт набирает заданную высоту.'],
+          ['cruise','крейсерский полёт','The aircraft has reached its cruising altitude.','Самолёт достиг крейсерской высоты.']
+        ], reading:'After engine start, the crew completes the required checks and requests taxi clearance. The aircraft taxis to the runway holding point. When take-off clearance is received, the crew lines up and performs the take-off. After rotation, the aircraft climbs to the assigned altitude and eventually reaches the cruise phase.', translation:'После запуска двигателей экипаж выполняет необходимые проверки и запрашивает разрешение на руление. Самолёт рулит к предварительному на ВПП. После получения разрешения на взлёт экипаж занимает исполнительный старт и выполняет взлёт. После ротации самолёт набирает заданную высоту и в итоге переходит в крейсерский полёт.', task:'Опиши последовательность действий от запуска двигателей до выхода на крейсерский эшелон.', required:['engine start','taxi','take-off','climb'] },
+        { title:'Снижение и посадка', words:[
+          ['descent','снижение','The descent will commence in ten minutes.','Снижение начнётся через десять минут.'],
+          ['approach','заход на посадку','The aircraft is established on the approach.','Самолёт стабилизировался на заходе.'],
+          ['final approach','конечный этап захода','The aircraft is on final approach.','Самолёт на конечном этапе захода.'],
+          ['landing clearance','разрешение на посадку','The crew has received landing clearance.','Экипаж получил разрешение на посадку.'],
+          ['touchdown','приземление','Touchdown occurred within the touchdown zone.','Приземление произошло в пределах зоны приземления.'],
+          ['vacate the runway','освободить ВПП','The aircraft will vacate the runway via taxiway Bravo.','Самолёт освободит ВПП по рулёжной дорожке Bravo.']
+        ], reading:'Before reaching the destination, the crew prepares for descent and reviews the approach briefing. The aircraft is then established on the approach. After receiving landing clearance, the crew continues to the runway. Following touchdown and deceleration, the aircraft vacates the runway and taxis to the assigned stand.', translation:'Перед прибытием в пункт назначения экипаж готовится к снижению и повторяет брифинг по заходу. Затем самолёт стабилизируется на заходе. После получения разрешения на посадку экипаж продолжает заход на ВПП. После приземления и торможения самолёт освобождает ВПП и рулит на назначенную стоянку.', task:'Расскажи на английском, что происходит от начала снижения до заруливания на стоянку.', required:['descent','approach','touchdown','runway'] }
+      ]},
+      { id:'weather', name:'Метеорология', lessons:[
+        { title:'Видимость и облачность', words:[
+          ['visibility','видимость','Visibility is reduced due to fog.','Видимость снижена из-за тумана.'],
+          ['ceiling','нижняя граница облачности','The ceiling is reported at 500 feet.','Нижняя граница облачности указана 500 футов.'],
+          ['scattered clouds','разбросанная облачность (SCT)','Scattered clouds are reported at 2,000 feet.','Разбросанная облачность отмечена на 2 000 футов.'],
+          ['overcast','сплошная облачность (OVC)','The sky is overcast.','Небо затянуто сплошной облачностью.'],
+          ['fog','туман','Fog is affecting the airport.','Туман влияет на работу аэропорта.'],
+          ['mist','дымка','Mist is reducing the visibility.','Дымка снижает видимость.']
+        ], reading:'The latest weather report indicates reduced visibility due to fog. The ceiling is low, with an overcast layer reported below the planned approach minima. The crew reviews the latest METAR and TAF and evaluates whether the conditions are suitable for the planned approach and alternate requirements.', translation:'Последняя сводка погоды указывает на ухудшение видимости из-за тумана. Нижняя граница облачности низкая; сплошной слой находится ниже минимумов планируемого захода. Экипаж изучает последние METAR и TAF и оценивает, подходят ли условия для планируемого захода и требований к запасному аэродрому.', task:'Опиши погодные условия на аэродроме, используя термины видимости и облачности.', required:['visibility','ceiling','fog','TAF'] },
+        { title:'Ветер и опасные явления', words:[
+          ['crosswind','боковой ветер','The crosswind is close to the aircraft limitation.','Боковой ветер близок к ограничению самолёта.'],
+          ['tailwind','попутный ветер','A tailwind component is reported on the runway.','На ВПП сообщается составляющая попутного ветра.'],
+          ['wind shear','сдвиг ветра','Wind shear may be expected on final approach.','На конечном этапе захода возможен сдвиг ветра.'],
+          ['turbulence','турбулентность','Moderate turbulence is expected along the route.','По маршруту ожидается умеренная турбулентность.'],
+          ['icing','обледенение','Icing conditions are forecast in the area.','В районе прогнозируются условия обледенения.'],
+          ['thunderstorm','гроза','Thunderstorms are moving towards the airport.','Грозы перемещаются в сторону аэропорта.']
+        ], reading:'The forecast indicates moderate turbulence and possible icing along the route. Thunderstorms are developing near the destination. The crew considers the latest weather information, wind components and available deviations. Any operational decision must be made in accordance with current procedures and aircraft limitations.', translation:'Прогноз указывает на умеренную турбулентность и возможное обледенение по маршруту. Вблизи пункта назначения развиваются грозы. Экипаж учитывает последнюю метеоинформацию, составляющие ветра и доступные обходы. Любое эксплуатационное решение должно приниматься в соответствии с действующими процедурами и ограничениями самолёта.', task:'Составь краткий метеобрифинг на английском о ветре, турбулентности и грозовой деятельности.', required:['wind','turbulence','icing','thunderstorms'] }
+      ]},
+      { id:'abnormal', name:'Нештатные ситуации', lessons:[
+        { title:'Отказы и предупреждения', words:[
+          ['failure','отказ','The crew is dealing with an engine failure.','Экипаж действует при отказе двигателя.'],
+          ['malfunction','неисправность','A system malfunction has been detected.','Обнаружена неисправность системы.'],
+          ['warning','предупреждение','A warning message appeared on the display.','На дисплее появилось предупреждающее сообщение.'],
+          ['caution','предостережение / сигнал внимания','The caution light illuminated.','Загорелась лампа предупреждения.'],
+          ['smoke','дым','Smoke was reported in the cabin.','В салоне сообщили о дыме.'],
+          ['emergency landing','аварийная посадка','The aircraft is preparing for an emergency landing.','Самолёт готовится к аварийной посадке.']
+        ], reading:'During the flight, the crew receives a warning message indicating a system malfunction. The pilots identify the affected system, maintain aircraft control and refer to the applicable checklist. They assess the situation and coordinate their actions. This training text is for English practice only; operational actions must always follow the approved manuals and checklists.', translation:'Во время полёта экипаж получает предупреждающее сообщение, указывающее на неисправность системы. Пилоты определяют затронутую систему, сохраняют управление самолётом и обращаются к соответствующему контрольному перечню. Они оценивают ситуацию и координируют действия. Этот учебный текст предназначен только для практики английского; эксплуатационные действия всегда должны выполняться по утверждённым руководствам и чек-листам.', task:'Опиши на английском общую последовательность: обнаружение предупреждения, определение проблемы, обращение к чек-листу и координация экипажа.', required:['warning','system','checklist','crew'] },
+        { title:'Связь и взаимодействие экипажа', words:[
+          ['to report','доложить / сообщить','The cabin crew reported an unusual smell.','Бортпроводники доложили о необычном запахе.'],
+          ['to confirm','подтвердить','Please confirm the current status.','Пожалуйста, подтвердите текущее состояние.'],
+          ['to monitor','контролировать / отслеживать','The first officer continues to monitor the instruments.','Второй пилот продолжает контролировать приборы.'],
+          ['to coordinate','координировать','The pilots coordinate their actions.','Пилоты координируют свои действия.'],
+          ['checklist','контрольный перечень','The appropriate checklist is being completed.','Выполняется соответствующий контрольный перечень.'],
+          ['situational awareness','ситуационная осведомлённость','Good communication supports situational awareness.','Хорошая коммуникация поддерживает ситуационную осведомлённость.']
+        ], reading:'Clear communication is essential when the crew is dealing with an abnormal situation. One pilot may fly the aircraft while the other monitors the instruments and completes the relevant checklist. The pilots confirm important information, coordinate their actions and maintain situational awareness. Cabin crew reports should be acknowledged and assessed.', translation:'Чёткая коммуникация крайне важна при работе экипажа в нештатной ситуации. Один пилот может управлять самолётом, пока другой контролирует приборы и выполняет соответствующий контрольный перечень. Пилоты подтверждают важную информацию, координируют действия и поддерживают ситуационную осведомлённость. Доклады кабинного экипажа должны быть приняты и оценены.', task:'Составь небольшой текст о взаимодействии двух пилотов и кабинного экипажа в нештатной ситуации.', required:['communicate','checklist','monitor','confirm'] }
+      ]}
+    ];
+    // Дополнительная лексика: расширяем каждый урок до полноценного тематического словаря.
+    const engExtraWords = [
+      [
+        [
+          ['departure lounge','зал вылета','Passengers are waiting in the departure lounge.','Пассажиры ожидают в зале вылета.'],['arrival hall','зал прилёта','The meeting point is in the arrival hall.','Место встречи находится в зале прилёта.'],['security screening','предполётный досмотр','All passengers must pass security screening.','Все пассажиры должны пройти предполётный досмотр.'],['boarding group','группа посадки','Your boarding group is shown on the boarding pass.','Ваша группа посадки указана в посадочном талоне.'],['flight number','номер рейса','Please check the flight number on the screen.','Пожалуйста, проверьте номер рейса на табло.'],['departure time','время вылета','The departure time has not changed.','Время вылета не изменилось.'],['delay','задержка','The flight is delayed due to weather conditions.','Рейс задержан из-за погодных условий.'],['overhead bin','багажная полка','Place your small bag in the overhead bin.','Разместите небольшую сумку на багажной полке.'],['checked baggage','зарегистрированный багаж','Checked baggage is delivered to the aircraft hold.','Зарегистрированный багаж доставляется в багажный отсек самолёта.'],['connecting flight','стыковочный рейс','Passengers have enough time for their connecting flight.','У пассажиров достаточно времени для стыковочного рейса.']
+        ],
+        [
+          ['turnaround','обслуживание самолёта между рейсами','The turnaround must be completed on schedule.','Обслуживание между рейсами должно быть завершено по графику.'],['tow truck','буксировщик','The tow truck is approaching the aircraft.','Буксировщик приближается к самолёту.'],['towbar','водило','The towbar is connected to the nose landing gear.','Водило присоединено к носовой стойке шасси.'],['chocks','колодки','The ground crew places chocks under the wheels.','Наземный персонал устанавливает колодки под колёса.'],['conveyor belt loader','ленточный багажный погрузчик','The conveyor belt loader is positioned at the cargo door.','Ленточный погрузчик установлен у грузовой двери.'],['cargo compartment','грузовой отсек','The cargo compartment is inspected before loading.','Грузовой отсек осматривается перед загрузкой.'],['loading','загрузка','Loading is completed before departure.','Загрузка завершена до вылета.'],['potable water service','заправка питьевой водой','Potable water service is provided by the ground team.','Наземная команда выполняет заправку питьевой водой.'],['lavatory service','обслуживание туалетных систем','Lavatory service is completed during the turnaround.','Обслуживание туалетных систем выполняется между рейсами.'],['ground crew','наземный экипаж','The ground crew confirms that the area is clear.','Наземный персонал подтверждает, что зона свободна.']
+        ]
+      ],
+      [
+        [
+          ['nose section','носовая часть','The nose section is inspected during the walk-around.','Носовая часть осматривается во время обхода.'],['tail section','хвостовая часть','The tail section must be checked for damage.','Хвостовая часть должна быть проверена на повреждения.'],['horizontal stabilizer','горизонтальный стабилизатор','The horizontal stabilizer provides longitudinal stability.','Горизонтальный стабилизатор обеспечивает продольную устойчивость.'],['vertical stabilizer','вертикальный стабилизатор','The vertical stabilizer provides directional stability.','Вертикальный стабилизатор обеспечивает путевую устойчивость.'],['leading edge','передняя кромка','The leading edge is checked for contamination.','Передняя кромка проверяется на наличие загрязнений.'],['trailing edge','задняя кромка','The trailing edge is inspected for visible damage.','Задняя кромка осматривается на наличие видимых повреждений.'],['nose gear','носовая стойка шасси','The nose gear is inspected for leaks.','Носовая стойка шасси проверяется на утечки.'],['main landing gear','основные стойки шасси','The main landing gear is checked before flight.','Основные стойки шасси проверяются перед полётом.'],['radome','обтекатель антенны РЛС','The radome surface must be free of damage.','Поверхность радиопрозрачного обтекателя не должна иметь повреждений.'],['engine inlet','воздухозаборник двигателя','The engine inlet is checked for foreign objects.','Воздухозаборник двигателя проверяется на посторонние предметы.']
+        ],
+        [
+          ['fuel system','топливная система','The fuel system is monitored during the flight.','Топливная система контролируется во время полёта.'],['air conditioning system','система кондиционирования воздуха','The air conditioning system maintains cabin comfort.','Система кондиционирования поддерживает комфорт в салоне.'],['anti-ice system','противообледенительная система','The anti-ice system is used in icing conditions.','Противообледенительная система используется в условиях обледенения.'],['fire protection system','система противопожарной защиты','The fire protection system provides warnings.','Система противопожарной защиты обеспечивает предупреждения.'],['oxygen system','кислородная система','The oxygen system is checked in accordance with the checklist.','Кислородная система проверяется в соответствии с контрольным перечнем.'],['brake system','тормозная система','The brake system is inspected before departure.','Тормозная система осматривается перед вылетом.'],['auxiliary power unit','вспомогательная силовая установка','The auxiliary power unit supplies electrical power on the ground.','ВСУ обеспечивает электропитание на земле.'],['generator','генератор','Each generator supplies electrical power.','Каждый генератор обеспечивает электропитание.'],['hydraulic pressure','давление в гидросистеме','The hydraulic pressure is within the normal range.','Давление в гидросистеме находится в нормальном диапазоне.'],['system status','состояние системы','The crew checks the system status before departure.','Экипаж проверяет состояние системы перед вылетом.']
+        ]
+      ],
+      [
+        [
+          ['before start checklist','контрольный перечень перед запуском','The crew completes the before start checklist.','Экипаж выполняет контрольный перечень перед запуском.'],['taxiway','рулёжная дорожка','The aircraft is cleared to taxi via taxiway Alpha.','Самолёту разрешено руление по рулёжной дорожке Alpha.'],['holding point','предварительный на ВПП','The aircraft is approaching the holding point.','Самолёт приближается к предварительному на ВПП.'],['line up','занять исполнительный старт','The aircraft is cleared to line up.','Самолёту разрешено занять исполнительный старт.'],['thrust','тяга','The pilots set the required take-off thrust.','Пилоты устанавливают необходимую взлётную тягу.'],['airspeed','воздушная скорость','The pilot monitors the airspeed during take-off.','Пилот контролирует воздушную скорость во время взлёта.'],['positive rate','положительная вертикальная скорость','The crew confirms a positive rate of climb.','Экипаж подтверждает положительную вертикальную скорость.'],['retraction','уборка','Landing gear retraction follows the normal procedure.','Уборка шасси выполняется по стандартной процедуре.'],['assigned altitude','заданная высота','The aircraft levels off at the assigned altitude.','Самолёт выходит в горизонтальный полёт на заданной высоте.'],['departure route','маршрут вылета','The aircraft follows the published departure route.','Самолёт следует опубликованному маршруту вылета.']
+        ],
+        [
+          ['top of descent','точка начала снижения','The top of descent is approaching.','Приближается точка начала снижения.'],['approach briefing','брифинг по заходу','The crew completes the approach briefing.','Экипаж завершает брифинг по заходу.'],['descent profile','профиль снижения','The aircraft follows the planned descent profile.','Самолёт следует запланированному профилю снижения.'],['glide path','глиссада','The aircraft is established on the glide path.','Самолёт находится на глиссаде.'],['localizer','курсовой радиомаяк','The localizer provides lateral guidance.','Курсовой радиомаяк обеспечивает боковое наведение.'],['runway threshold','порог ВПП','The runway threshold is clearly visible.','Порог ВПП хорошо виден.'],['flare','выравнивание','The flare is initiated at the appropriate height.','Выравнивание начинается на соответствующей высоте.'],['reverse thrust','реверс тяги','Reverse thrust is used in accordance with the procedure.','Реверс тяги используется в соответствии с процедурой.'],['braking action','эффективность торможения','The braking action is reported as good.','Эффективность торможения оценивается как хорошая.'],['taxi to stand','руление на стоянку','After landing, the aircraft taxis to stand.','После посадки самолёт рулит на стоянку.']
+        ]
+      ],
+      [
+        [
+          ['METAR','регулярная авиационная метеосводка','The latest METAR reports reduced visibility.','Последняя сводка METAR сообщает об ухудшении видимости.'],['TAF','прогноз погоды по аэродрому','The TAF indicates temporary fog.','Прогноз TAF указывает на временный туман.'],['vertical visibility','вертикальная видимость','Vertical visibility is reported in the observation.','В сводке указана вертикальная видимость.'],['cloud base','основание облаков','The cloud base is below the planned level.','Основание облаков находится ниже запланированного уровня.'],['few clouds','незначительная облачность (FEW)','Few clouds are reported at 1,500 feet.','Незначительная облачность отмечена на высоте 1 500 футов.'],['broken clouds','значительная облачность (BKN)','Broken clouds are reported over the airport.','Над аэродромом отмечена значительная облачность.'],['rain','дождь','Rain is reducing the runway visibility.','Дождь ухудшает видимость на ВПП.'],['drizzle','морось','Drizzle is expected during the morning.','Утром ожидается морось.'],['runway visual range','видимость на ВПП (RVR)','The runway visual range is decreasing.','Видимость на ВПП уменьшается.'],['weather conditions','метеоусловия','Weather conditions are below the required minima.','Метеоусловия ниже требуемых минимумов.']
+        ],
+        [
+          ['gust','порыв ветра','Wind gusts are reported at the destination.','В пункте назначения сообщается о порывах ветра.'],['wind direction','направление ветра','The wind direction is changing.','Направление ветра меняется.'],['wind speed','скорость ветра','The wind speed is increasing.','Скорость ветра увеличивается.'],['microburst','микропорыв','A microburst may create a significant hazard.','Микропорыв может создавать серьёзную опасность.'],['downdraft','нисходящий поток','A strong downdraft is reported near the storm.','Вблизи грозы отмечается сильный нисходящий поток.'],['updraft','восходящий поток','Strong updrafts may occur in cumulonimbus clouds.','В кучево-дождевых облаках возможны сильные восходящие потоки.'],['cumulonimbus cloud','кучево-дождевая облачность','Cumulonimbus clouds are present along the route.','По маршруту наблюдаются кучево-дождевые облака.'],['freezing level','уровень нулевой изотермы','The freezing level is forecast at 8,000 feet.','Уровень нулевой изотермы прогнозируется на 8 000 футов.'],['icing severity','интенсивность обледенения','The report describes the icing severity.','В сообщении описывается интенсивность обледенения.'],['weather radar','метеорадар','The crew uses weather radar to assess precipitation.','Экипаж использует метеорадар для оценки осадков.']
+        ]
+      ],
+      [
+        [
+          ['engine fire','пожар двигателя','The crew receives an engine fire warning.','Экипаж получает предупреждение о пожаре двигателя.'],['engine shutdown','выключение двигателя','The engine shutdown is performed in accordance with the checklist.','Выключение двигателя выполняется в соответствии с контрольным перечнем.'],['hydraulic leak','утечка гидравлической жидкости','The crew reports a possible hydraulic leak.','Экипаж докладывает о возможной утечке гидравлической жидкости.'],['decompression','разгерметизация','The crew is trained to respond to decompression.','Экипаж обучен действиям при разгерметизации.'],['rapid descent','экстренное снижение','A rapid descent may be required by the procedure.','Процедура может предусматривать экстренное снижение.'],['bird strike','столкновение с птицей','A bird strike is reported after take-off.','После взлёта сообщается о столкновении с птицей.'],['vibration','вибрация','The pilot notices abnormal engine vibration.','Пилот замечает ненормальную вибрацию двигателя.'],['unusual noise','необычный шум','The cabin crew reports an unusual noise.','Бортпроводники сообщают о необычном шуме.'],['system alert','системное предупреждение','A system alert appears on the display.','На дисплее появляется системное предупреждение.'],['diversion','уход на запасной аэродром / изменение маршрута','The crew considers a diversion to the alternate.','Экипаж рассматривает уход на запасной аэродром.']
+        ],
+        [
+          ['first officer','второй пилот','The first officer monitors the flight instruments.','Второй пилот контролирует пилотажно-навигационные приборы.'],['captain','командир воздушного судна','The captain makes the final operational decision.','Командир принимает окончательное эксплуатационное решение.'],['cabin crew','кабинный экипаж','The cabin crew reports the situation to the flight deck.','Кабинный экипаж докладывает о ситуации в кабину пилотов.'],['flight deck','кабина пилотов','The captain asks the cabin crew to contact the flight deck.','Командир просит кабинный экипаж связаться с кабиной пилотов.'],['briefing','брифинг','The crew conducts a short briefing.','Экипаж проводит краткий брифинг.'],['workload','рабочая нагрузка','The pilots manage their workload carefully.','Пилоты внимательно распределяют рабочую нагрузку.'],['task sharing','распределение задач','Task sharing helps the crew work effectively.','Распределение задач помогает экипажу эффективно работать.'],['readback','повторение принятой команды','The pilot provides a complete readback.','Пилот полностью повторяет принятую команду.'],['cross-check','перекрёстная проверка','The pilots perform a cross-check of the information.','Пилоты выполняют перекрёстную проверку информации.'],['decision-making','принятие решений','Good decision-making requires accurate information.','Для правильного принятия решений необходима точная информация.']
+        ]
+      ]
+    ];
+    engCourse.forEach((topic,ti)=>topic.lessons.forEach((lesson,li)=>lesson.words.push(...engExtraWords[ti][li])));
+    // Базовая лексика для ICAO English: рабочие действия, описание ситуации,
+    // понимание, запросы и объяснение причин. Это учебная лексика, не замена R/T phraseology.
+    const engIcaoCore = [
+      [
+        [
+          ['available','доступный / имеющийся','A seat is available on the next flight.','На следующем рейсе есть свободное место.'],['fully booked','полностью забронированный','The flight is fully booked.','На рейс все места забронированы.'],['oversized baggage','негабаритный багаж','Oversized baggage must be checked separately.','Негабаритный багаж необходимо оформить отдельно.'],['restricted item','предмет, запрещённый к провозу','This item is restricted and cannot be carried in the cabin.','Этот предмет запрещён к провозу в салоне.'],['connecting passenger','транзитный пассажир','The connecting passenger is waiting for assistance.','Транзитный пассажир ожидает помощи.'],['miss a flight','опоздать на рейс','Passengers may miss the flight due to the delay.','Пассажиры могут опоздать на рейс из-за задержки.'],['rebook','переоформить билет','The airline will rebook the passengers.','Авиакомпания переоформит билеты пассажирам.'],['inform','информировать','Please inform passengers about the change.','Пожалуйста, проинформируйте пассажиров об изменении.']
+        ],
+        [
+          ['clearance','разрешение / допуск','The aircraft is not ready for pushback clearance.','Самолёт ещё не готов к получению разрешения на буксировку.'],['obstacle','препятствие','There is an obstacle near the stand.','Рядом со стоянкой находится препятствие.'],['leak','утечка','The ground crew reports a fluid leak.','Наземный персонал сообщает об утечке жидкости.'],['damage','повреждение','Visible damage was found during the inspection.','Во время осмотра было обнаружено видимое повреждение.'],['secure','закрепить / обеспечить фиксацию','Make sure that all service panels are secure.','Убедитесь, что все сервисные панели надёжно закрыты.'],['disconnect','отсоединить','The ground crew will disconnect the GPU.','Наземный персонал отсоединит GPU.'],['equipment','оборудование','All ground equipment must be clear of the aircraft.','Всё наземное оборудование должно быть убрано от самолёта.'],['delay due to','задержка из-за','The departure is delayed due to ground handling.','Вылет задерживается из-за наземного обслуживания.']
+        ]
+      ],
+      [
+        [
+          ['crack','трещина','A crack is visible on the surface.','На поверхности видна трещина.'],['dent','вмятина','The inspection revealed a dent.','Осмотр выявил вмятину.'],['contamination','загрязнение','The wing surface must be checked for contamination.','Поверхность крыла необходимо проверить на загрязнение.'],['loose','незакреплённый / ослабленный','A loose panel was reported.','Сообщено об ослабленной панели.'],['condition','состояние','The general condition of the aircraft is satisfactory.','Общее состояние самолёта удовлетворительное.'],['surface','поверхность','The surface is covered with ice.','Поверхность покрыта льдом.'],['inspect','осматривать / проверять','The crew must inspect the affected area.','Экипаж должен осмотреть затронутую область.'],['foreign object','посторонний предмет','A foreign object was found near the engine.','Рядом с двигателем был обнаружен посторонний предмет.']
+        ],
+        [
+          ['operate','работать / функционировать','The system operates normally.','Система работает нормально.'],['supply','подавать / обеспечивать','The pump supplies hydraulic pressure.','Насос обеспечивает подачу гидравлического давления.'],['indicate','показывать / индицировать','The indicator shows a low pressure.','Индикатор показывает низкое давление.'],['available power','доступная мощность','Available power is limited.','Доступная мощность ограничена.'],['overheat','перегреваться','The component may overheat.','Компонент может перегреться.'],['overpressure','избыточное давление','The system protection prevents overpressure.','Защита системы предотвращает избыточное давление.'],['normal range','нормальный диапазон','The temperature is within the normal range.','Температура находится в нормальном диапазоне.'],['unserviceable','неисправный / непригодный к эксплуатации','The equipment is reported unserviceable.','Оборудование признано неисправным.']
+        ]
+      ],
+      [
+        [
+          ['request','запрашивать / запрос','The crew requests permission to start.','Экипаж запрашивает разрешение на запуск.'],['instruct','инструктировать / давать указание','The controller instructs the aircraft to hold position.','Диспетчер даёт указание самолёту оставаться на месте.'],['maintain','сохранять / выдерживать','Maintain the assigned altitude.','Выдерживайте заданную высоту.'],['proceed','следовать / продолжать движение','Proceed to the next waypoint.','Следуйте к следующей путевой точке.'],['remain','оставаться','Remain on the current frequency.','Оставайтесь на текущей частоте.'],['unable','не могу выполнить / невозможно','Unable to accept the approach due to weather.','Не можем принять заход из-за погоды.'],['expect','ожидать','Expect further clearance in five minutes.','Ожидайте дальнейшее разрешение через пять минут.'],['report position','доложить местоположение','Report your position.','Доложите своё местоположение.']
+        ],
+        [
+          ['established','установившийся / стабилизировавшийся','The aircraft is established on the localizer.','Самолёт установился по курсовому радиомаяку.'],['deviate','отклоняться','The aircraft deviates from the planned route.','Самолёт отклоняется от запланированного маршрута.'],['avoid','избегать / обходить','The crew requests a deviation to avoid weather.','Экипаж запрашивает отклонение от маршрута для обхода погоды.'],['continue','продолжать','Continue the approach.','Продолжайте заход.'],['discontinue','прекратить','The crew decides to discontinue the approach.','Экипаж принимает решение прекратить заход.'],['resume','возобновить','The aircraft may resume its route.','Самолёт может возобновить следование по маршруту.'],['on schedule','по расписанию','The flight is operating on schedule.','Рейс выполняется по расписанию.'],['at this time','в данный момент','No further information is available at this time.','В данный момент дополнительной информации нет.']
+        ]
+      ],
+      [
+        [
+          ['forecast','прогноз','The forecast indicates improving weather.','Прогноз указывает на улучшение погоды.'],['prevailing','преобладающий','The prevailing visibility is four kilometres.','Преобладающая видимость составляет четыре километра.'],['temporary','временный','Temporary reductions in visibility are expected.','Ожидаются временные ухудшения видимости.'],['gradually','постепенно','The weather is gradually improving.','Погода постепенно улучшается.'],['deteriorate','ухудшаться','Weather conditions may deteriorate.','Погодные условия могут ухудшиться.'],['improve','улучшаться','Visibility is expected to improve.','Ожидается улучшение видимости.'],['precipitation','осадки','Heavy precipitation is moving across the area.','Сильные осадки перемещаются через район.'],['area of low pressure','область низкого давления','An area of low pressure is approaching.','Приближается область низкого давления.']
+        ],
+        [
+          ['severe','сильный / интенсивный','Severe turbulence is reported ahead.','Впереди сообщается о сильной турбулентности.'],['moderate','умеренный','Moderate icing is expected.','Ожидается умеренное обледенение.'],['light','слабый','Light rain is reported at the airport.','В аэропорту отмечается слабый дождь.'],['sudden','внезапный','A sudden change in wind direction was observed.','Наблюдалось внезапное изменение направления ветра.'],['fluctuate','колебаться','The wind speed may fluctuate.','Скорость ветра может колебаться.'],['clear of clouds','вне облаков','The route is expected to remain clear of clouds.','Ожидается, что маршрут останется вне облаков.'],['embedded thunderstorm','встроенная гроза','Embedded thunderstorms may be difficult to identify visually.','Встроенные грозы может быть трудно определить визуально.'],['turbulent','турбулентный','The air is turbulent near the mountain range.','В районе горного хребта воздух турбулентный.']
+        ]
+      ],
+      [
+        [
+          ['smell','запах','The cabin crew reports a burning smell.','Бортпроводники сообщают о запахе гари.'],['fumes','пары / дымные испарения','Fumes are reported in the cabin.','В салоне сообщается о парах.'],['injury','травма','One passenger has sustained an injury.','Один пассажир получил травму.'],['unconscious','без сознания','A passenger is unconscious.','Пассажир находится без сознания.'],['evacuate','эвакуировать','The passengers may need to evacuate.','Может потребоваться эвакуация пассажиров.'],['precautionary landing','посадка в качестве меры предосторожности','The crew is considering a precautionary landing.','Экипаж рассматривает посадку в качестве меры предосторожности.'],['nearest suitable airport','ближайший подходящий аэродром','The crew identifies the nearest suitable airport.','Экипаж определяет ближайший подходящий аэродром.'],['assistance','помощь','The crew requests medical assistance.','Экипаж запрашивает медицинскую помощь.']
+        ],
+        [
+          ['acknowledge','подтвердить получение / принять к сведению','The pilot acknowledges the cabin crew report.','Пилот подтверждает получение доклада кабинного экипажа.'],['clarify','уточнить','Could you clarify the nature of the problem?','Не могли бы вы уточнить характер проблемы?'],['repeat','повторить','Please repeat the last information.','Пожалуйста, повторите последнюю информацию.'],['describe','описывать','Describe what you can see.','Опишите, что вы видите.'],['in accordance with','в соответствии с','The checklist is completed in accordance with the procedure.','Контрольный перечень выполняется в соответствии с процедурой.'],['available information','имеющаяся информация','The decision is based on available information.','Решение основывается на имеющейся информации.'],['priority','приоритет','The aircraft requests priority handling.','Самолёт запрашивает обслуживание в приоритетном порядке.'],['stand by','ожидать','Stand by for further instructions.','Ожидайте дальнейших указаний.']
+        ]
+      ]
+    ];
+    engCourse.forEach((topic,ti)=>topic.lessons.forEach((lesson,li)=>lesson.words.push(...engIcaoCore[ti][li])));
+    let engTopicIndex=0, engLessonIndex=0;
+    let engExerciseIndex=0, engSelectedWords=[], engExercisePassed=false, engCurrentBank=[];
+    let engReadingTexts=[], engReadingIndex=0;
+    let engCompletedLessons=new Set();
+    let engKnownWords={};
+    try { engCompletedLessons=new Set(JSON.parse(localStorage.getItem('aviaEngCompletedLessons')||'[]')); } catch(e) {}
+    try { engKnownWords=JSON.parse(localStorage.getItem('aviaEngKnownWords')||'{}'); } catch(e) {}
+    let engWordReviewIndex=0, engQuizDirection=0, engQuizQueue=[], engQuizIndex=0, engQuizCorrect=0, engQuizAnswered=false, engQuizScheduled=new Set();
+    let engSentenceQueue=[], engSentenceWrong=[], engSentenceFirstPass=0, engSentenceFirstCorrect=0, engSentenceRemedial=false, engSentenceCompleted=false, engSentenceMastered=new Set(), engSentenceTotal=100;
+    function engLessonKey(t=engTopicIndex,l=engLessonIndex){ return engCourse[t].id+':'+l; }
+    function engWordKey(i){ return engLessonKey()+':'+i; }
+    function engIsLessonUnlocked(t,l){ return l===0 || engCompletedLessons.has(engLessonKey(t,l-1)); }
+    function engSaveProgress(){ try { localStorage.setItem('aviaEngCompletedLessons',JSON.stringify([...engCompletedLessons])); localStorage.setItem('aviaEngKnownWords',JSON.stringify(engKnownWords)); } catch(e) {} }
+    function engCurrentLesson(){
+      const current=engCourse[engTopicIndex].lessons[engLessonIndex];
+      const previous=[];
+      // К каждому новому уроку добавляем лексику из уже пройденных уроков курса:
+      // три слова из каждого предыдущего урока, чтобы словарь рос постепенно.
+      for(let ti=0;ti<=engTopicIndex;ti++){
+        const limit=ti===engTopicIndex?engLessonIndex:engCourse[ti].lessons.length;
+        for(let li=0;li<limit;li++){
+          if(!engCompletedLessons.has(engCourse[ti].id+':'+li)) continue;
+          const prior=engCourse[ti].lessons[li];
+          const picks=[0,3,6];
+          picks.forEach(ix=>{if(prior.words[ix]) previous.push(prior.words[ix]);});
+        }
+      }
+      const seen=new Set(current.words.map(w=>w[0].toLowerCase()));
+      const review=previous.filter(w=>{const k=w[0].toLowerCase();if(seen.has(k))return false;seen.add(k);return true;});
+      return {...current,newWords:current.words,reviewWords:review,words:[...current.words,...review]};
+    }
+    function engToggleIntro(button){
+      const description=document.getElementById('engIntroDescription');
+      const expanded=button.getAttribute('aria-expanded')==='true';
+      button.setAttribute('aria-expanded',String(!expanded));
+      description.classList.toggle('eng-hidden',expanded);
+    }
+    function engRenderTopics(){ document.getElementById('engTopicTabs').innerHTML=engCourse.map((t,i)=>`<button class="eng-topic-btn ${i===engTopicIndex?'active':''}" onclick="engSelectTopic(${i})">${t.name}</button>`).join(''); }
+    function engSelectTopic(i){ engTopicIndex=i; engLessonIndex=0; engRenderTopics(); engRenderLessons(); document.getElementById('engLessonArea').classList.add('eng-hidden'); }
+    function engRenderLessons(){
+      const lessons=engCourse[engTopicIndex].lessons;
+      document.getElementById('engLessonList').innerHTML=lessons.map((l,i)=>{const unlocked=engIsLessonUnlocked(engTopicIndex,i),done=engCompletedLessons.has(engLessonKey(engTopicIndex,i));return `<button class="eng-lesson-btn ${i===engLessonIndex?'active':''}" ${unlocked?'':'disabled'} onclick="engSelectLesson(${i})"><span>${i+1}. ${l.title}</span><small>${done?'✓ Пройден':unlocked?`${l.words.length} слов · 100 предложений`:'🔒 Закрыт'}</small></button>`;}).join('');
+    }
+    function engShowStage(stage){
+      const ids=['engWordsArea','engQuizArea','engReadingArea','engBuildArea'];
+      ids.forEach((id,i)=>document.getElementById(id).classList.toggle('eng-hidden',i!==stage));
+      ['engStepWords','engStepQuiz','engStepReading','engStepBuild'].forEach((id,i)=>document.getElementById(id).classList.toggle('active',i===stage));
+    }
+    function engNavigateStage(stage){
+      if(stage===0){engWordReviewIndex=0;engShowStage(0);engRenderWordCard();return;}
+      if(stage===1){engStartQuiz(0);return;}
+      if(stage===2){engShowStage(2);return;}
+      if(stage===3){engStartSentences();return;}
+    }
+    function engSelectLesson(i){ if(!engIsLessonUnlocked(engTopicIndex,i))return; engTopicIndex=engTopicIndex; engLessonIndex=i; engRenderLessons(); engRenderLesson(); }
+    function engBuildReadingTexts(lesson){
+      const entries=lesson.words.map(w=>({en:(w[2]||'').trim(),ru:(w[3]||'').trim()})).filter(x=>x.en&&x.ru);
+      const openings=[
+        ['The crew arrives at the airport early in the morning and begins preparing for the flight.','Экипаж прибывает в аэропорт рано утром и начинает подготовку к рейсу.'],
+        ['After the initial briefing, the pilots move on to the next stage of preparation.','После предварительного брифинга пилоты переходят к следующему этапу подготовки.'],
+        ['The aircraft is ready, and the crew coordinates the departure with the ground team.','Самолёт готов, и экипаж согласовывает вылет с наземной службой.'],
+        ['Once airborne, the pilots settle into the flight and monitor the situation around them.','После взлёта пилоты переходят к выполнению полёта и контролируют окружающую обстановку.'],
+        ['Some time later, a change in the situation requires the crew to review the available information.','Некоторое время спустя изменение обстановки заставляет экипаж заново оценить имеющуюся информацию.'],
+        ['The crew discusses the options and agrees on the safest way to continue.','Экипаж обсуждает возможные варианты и выбирает наиболее безопасный способ продолжить полёт.'],
+        ['As the destination gets closer, the pilots begin preparing for arrival.','По мере приближения к пункту назначения пилоты начинают готовиться к прибытию.'],
+        ['The approach requires the crew to remain attentive and work closely together.','Заход требует от экипажа постоянного внимания и слаженной работы.'],
+        ['After landing, the aircraft taxis to its stand and the crew completes the remaining duties.','После посадки самолёт рулит к стоянке, а экипаж выполняет оставшиеся процедуры.'],
+        ['When the flight is over, the crew reviews the events and records any information that may be useful later.','После завершения рейса экипаж анализирует события и фиксирует информацию, которая может пригодиться в дальнейшем.']
+      ];
+      // Распределяем все слова урока по 50 фразам внутри десяти последовательных глав.
+      // Если слов несколько, примеры объединяются в одну фразу через точку с запятой.
+      const slots=Array.from({length:50},()=>[]);
+      entries.forEach((entry,i)=>slots[Math.min(49,Math.floor(i*50/Math.max(entries.length,1)))].push(entry));
+      return Array.from({length:10},(_,page)=>{
+        const en=[openings[page][0]], ru=[openings[page][1]];
+        for(let j=0;j<5;j++){
+          const group=slots[page*5+j];
+          if(group.length){
+            en.push(group.map(x=>x.en.replace(/[.!?]+$/,'')).join('; ')+'.');
+            ru.push(group.map(x=>x.ru.replace(/[.!?]+$/,'')).join('; ')+'.');
+          }else{
+            const fillers=[
+              ['The captain checks that every crew member understands the plan.','Командир убеждается, что каждый член экипажа понимает план действий.'],
+              ['The pilots keep the relevant information available throughout the flight.','Пилоты сохраняют доступ к необходимой информации на протяжении всего полёта.'],
+              ['They communicate clearly and confirm important details with each other.','Они чётко взаимодействуют и уточняют друг у друга важные детали.'],
+              ['The situation remains under control, and the flight continues as planned.','Обстановка остаётся под контролем, и полёт продолжается по плану.'],
+              ['The crew completes the next task and prepares for what comes after it.','Экипаж выполняет очередную задачу и готовится к следующему этапу.']
+            ][j];
+            en.push(fillers[0]);ru.push(fillers[1]);
+          }
+        }
+        return {en:en.join(' '),ru:ru.join(' ')};
+      });
+    }
+    function engRenderReading(){
+      const item=engReadingTexts[engReadingIndex]||{en:'',ru:''};
+      document.getElementById('engReadingText').textContent=item.en;
+      document.getElementById('engReadingTranslation').textContent=item.ru;
+      document.getElementById('engReadingTranslation').classList.add('eng-hidden');
+      document.getElementById('engTranslationButton').textContent='Показать перевод';
+      document.getElementById('engReadingCounter').textContent=`Текст ${engReadingIndex+1} из ${engReadingTexts.length}`;
+      document.getElementById('engReadingPrev').disabled=engReadingIndex===0;
+      document.getElementById('engReadingNext').disabled=engReadingIndex===engReadingTexts.length-1;
+    }
+    function engChangeReading(delta){
+      engReadingIndex=Math.max(0,Math.min(engReadingTexts.length-1,engReadingIndex+delta));
+      engRenderReading();
+    }
+    function engRenderLesson(){
+      const l=engCurrentLesson();
+      document.getElementById('engLessonArea').classList.remove('eng-hidden');
+      document.getElementById('engLessonTitle').textContent=`Урок ${engLessonIndex+1}. ${l.title}`;
+      engReadingTexts=engBuildReadingTexts(l); engReadingIndex=0; engRenderReading();
+      engWordReviewIndex=0; engSentenceQueue=[]; engSentenceWrong=[]; engSentenceCompleted=false; engShowStage(0); engRenderWordCard();
+    }
+    function engKnownMap(){ if(!engKnownWords[engLessonKey()])engKnownWords[engLessonKey()]={}; return engKnownWords[engLessonKey()]; }
+    function engRenderWordCard(){
+      const l=engCurrentLesson(), w=l.words[engWordReviewIndex], known=!!engKnownMap()[w[0]];
+      document.getElementById('engWordCard').innerHTML=`<div class="eng-vocab-term">${w[0]}</div><div class="eng-vocab-translation">${w[1]}</div><div class="eng-vocab-example">${w[2]}</div><div class="eng-vocab-example-ru">${w[3]}</div>`;
+      document.getElementById('engWordsCount').textContent=`Карточка ${engWordReviewIndex+1} из ${l.words.length} · ${l.newWords.length} новых + ${l.reviewWords.length} на повторение`;
+      document.getElementById('engKnowButton').textContent=known?'ЗНАЮ ✓':'ЗНАЮ';
+      document.getElementById('engLearnButton').textContent=known?'ПОВТОРИТЬ':'УЧИТЬ';
+    }
+    function engMarkWord(known){
+      engKnownMap()[engCurrentLesson().words[engWordReviewIndex][0]]=!!known; engSaveProgress();
+      if(engWordReviewIndex<engCurrentLesson().words.length-1){engWordReviewIndex++;engRenderWordCard();}
+      else engStartQuiz(0);
+    }
+    function engStartQuiz(direction){
+      engQuizDirection=direction; engQuizIndex=0; engQuizCorrect=0; engQuizAnswered=false;
+      const words=engCurrentLesson().words, known=engKnownMap();
+      // Сначала каждое слово встречается один раз. После первого ответа
+      // добавляем повторы: 2 раза всего при верном ответе и отметке «ЗНАЮ»,
+      // 4 раза всего при ошибке или отметке «УЧИТЬ».
+      engQuizQueue=engShuffle(words.map((w,i)=>i));
+      engQuizScheduled=new Set();
+      document.getElementById('engQuizTitle').textContent=direction===0?'Проверка 1 · английский → русский':'Проверка 2 · русский → английский';
+      document.getElementById('engQuizInstruction').textContent=direction===0?'Увидишь английское слово — выбери правильный русский перевод.':'Теперь наоборот: увидишь русский перевод — выбери английское слово.';
+      engShowStage(1); engRenderQuiz();
+    }
+    function engRenderQuiz(){
+      if(engQuizIndex>=engQuizQueue.length){
+        if(engQuizDirection===0){engStartQuiz(1);return;}
+        engShowStage(2); return;
+      }
+      engQuizAnswered=false;
+      const words=engCurrentLesson().words, idx=engQuizQueue[engQuizIndex], w=words[idx];
+      document.getElementById('engQuizProgress').textContent=`Вопрос ${engQuizIndex+1} из ${engQuizQueue.length}`;
+      document.getElementById('engQuizDirection').textContent=engQuizDirection===0?'EN → RU':'RU → EN';
+      document.getElementById('engQuizPrompt').textContent=engQuizDirection===0?w[0]:w[1];
+      const distractors=engShuffle(words.map((x,i)=>i).filter(i=>i!==idx)).slice(0,3);
+      const options=engShuffle([idx,...distractors]);
+      document.getElementById('engQuizOptions').innerHTML=options.map(i=>`<button type="button" class="eng-quiz-option" data-answer-index="${i}" onclick="engAnswerQuiz(${i},${idx})">${words[i][engQuizDirection===0?1:0]}</button>`).join('');
+      document.getElementById('engQuizFeedback').className='eng-exercise-feedback eng-hidden';
+      document.getElementById('engQuizNext').classList.add('eng-hidden');
+    }
+    function engAnswerQuiz(selected,correct){
+      if(engQuizAnswered)return;engQuizAnswered=true;
+      const ok=selected===correct;if(ok)engQuizCorrect++;
+      if(!engQuizScheduled.has(correct)){
+        engQuizScheduled.add(correct);
+        const known=!!engKnownMap()[engCurrentLesson().words[correct][0]];
+        const total=(ok && known)?2:4;
+        const extra=Array(Math.max(0,total-1)).fill(correct);
+        // Добавляем повторы в конец текущего круга, чтобы не показывать одно слово подряд.
+        engQuizQueue.push(...engShuffle(extra));
+      }
+      const feedback=document.getElementById('engQuizFeedback');
+      const w=engCurrentLesson().words[correct];
+      const answerText=w[engQuizDirection===0?1:0];
+      feedback.className='eng-exercise-feedback'+(ok?'':' fail');
+      feedback.innerHTML=ok?'Верно!':`Неверно. Правильный ответ: <b>${answerText}</b>`;
+      document.querySelectorAll('#engQuizOptions button').forEach(b=>{
+        const answerIndex=Number(b.dataset.answerIndex);
+        b.disabled=true;
+        if(answerIndex===correct)b.classList.add('correct');
+        if(answerIndex===selected && !ok)b.classList.add('wrong');
+      });
+      const next=document.getElementById('engQuizNext');
+      next.textContent=engQuizIndex===engQuizQueue.length-1?(engQuizDirection===0?'К проверке RU → EN':'Перейти к чтению'):'Следующее слово';
+      if(ok){
+        next.classList.add('eng-hidden');
+        window.setTimeout(()=>{if(engQuizAnswered)engQuizContinue();},650);
+      }else{
+        next.classList.remove('eng-hidden');
+      }
+    }
+    function engQuizContinue(){if(!engQuizAnswered)return;engQuizIndex++;engRenderQuiz();}
+    function engToggleTranslation(){const el=document.getElementById('engReadingTranslation');const hidden=el.classList.toggle('eng-hidden');document.getElementById('engTranslationButton').textContent=hidden?'Показать перевод':'Скрыть перевод';}
+    function engStartSentences(){
+      if(engSentenceQueue.length && !engSentenceCompleted){engShowStage(3);engRenderExercise();return;}
+      const l=engCurrentLesson();
+      const fresh=l.newWords.filter(w=>!/^to\s/i.test(w[0]));
+      const review=l.reviewWords.filter(w=>!/^to\s/i.test(w[0]));
+      const terms=[...engShuffle(fresh).slice(0,7),...engShuffle(review).slice(0,3)];
+      while(terms.length<10) terms.push(...engShuffle(fresh).slice(0,10-terms.length));
+      const sentenceTerms=terms.slice(0,10);
+      // Пары предложений выверены по-русски: термин встроен в естественную фразу,
+      // а не используется как прямое дополнение там, где требовалось бы склонение.
+      const frames=[
+        ['During the briefing, the crew discusses the meaning of {en}.','Во время брифинга экипаж обсуждает значение термина «{ru}».'],
+        ['The instructor explains when to use {en}.','Инструктор объясняет, в каких случаях следует использовать выражение «{ru}».'],
+        ['The report contains information about {en}.','В отчёте содержится информация о понятии «{ru}».'],
+        ['The captain asks the first officer to explain {en}.','Командир просит второго пилота объяснить значение термина «{ru}».'],
+        ['The crew reviews the procedure related to {en}.','Экипаж повторяет процедуру, связанную с понятием «{ru}».'],
+        ['The pilot gives a clear explanation of {en}.','Пилот даёт чёткое объяснение термина «{ru}».'],
+        ['The instructor gives an example of how to use {en}.','Инструктор приводит пример правильного использования выражения «{ru}».'],
+        ['The crew must understand how {en} is used in aviation.','Экипаж должен понимать, как термин «{ru}» используется в авиации.'],
+        ['The pilot uses {en} when describing the situation.','Описывая ситуацию, пилот правильно использует термин «{ru}».'],
+        ['The crew discusses why it is important to understand {en}.','Экипаж обсуждает, почему важно понимать значение термина «{ru}».']
+      ];
+      engSentenceQueue=[];
+      frames.forEach((f,fi)=>sentenceTerms.forEach((w,wi)=>engSentenceQueue.push({en:f[0].replace('{en}',w[0].toLowerCase()),ru:f[1].replace('{ru}',w[1]),id:fi+'-'+wi})));
+      // В каждом уроке не менее 100 заданий; если словарь содержит меньше десяти подходящих терминов, добавляем дополнительные комбинации.
+      let extra=0;while(engSentenceQueue.length<100){const base=engSentenceQueue[extra%Math.max(1,engSentenceQueue.length)];engSentenceQueue.push({...base,id:'extra-'+extra,ru:base.ru+' (вариант '+(extra+1)+')'});extra++;}
+      engSentenceQueue=engShuffle(engSentenceQueue).slice(0,Math.max(100,engSentenceQueue.length));
+      engSentenceTotal=engSentenceQueue.length;
+      engSentenceWrong=[];engSentenceFirstPass=0;engSentenceFirstCorrect=0;engSentenceMastered=new Set();engSentenceRemedial=false;engSentenceCompleted=false;engExerciseIndex=0;
+      engShowStage(3);engRenderExercise();
+    }
+    function engShuffle(list){const a=list.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+    function engNormalizeToken(v){return v.toLowerCase().replace(/^[^a-z0-9']+|[^a-z0-9']+$/gi,'');}
+    function engRenderExercise(){
+      const mastered=engSentenceMastered.size;
+      const percent=Math.round(mastered/Math.max(1,engSentenceTotal)*100);
+      if(engExerciseIndex>=engSentenceQueue.length){
+        if(!engSentenceRemedial){
+          // Даже при уже набранных 90% сначала показываем в конце круга все ошибки.
+          if(engSentenceWrong.length){engSentenceRemedial=true;engSentenceQueue=engSentenceWrong.slice();engSentenceWrong=[];engExerciseIndex=0;engRenderExercise();return;}
+          if(mastered>=Math.ceil(engSentenceTotal*0.9)){engCompleteLesson(percent);return;}
+          engCompleteLesson(percent);return;
+        }
+        // Ошибки повторяются кругами, пока общий результат не достигнет 90%.
+        if(mastered>=Math.ceil(engSentenceTotal*0.9)){engCompleteLesson(percent);return;}
+        if(engSentenceWrong.length){engSentenceQueue=engSentenceWrong.slice();engSentenceWrong=[];engExerciseIndex=0;engRenderExercise();return;}
+        engCompleteLesson(percent);return;
+      }
+      const ex=engSentenceQueue[engExerciseIndex], tokens=ex.en.trim().split(/\s+/);
+      engSelectedWords=[];engExercisePassed=false;
+      // Карточки в банке всегда со строчной буквы и без конечной пунктуации.
+      engCurrentBank=engShuffle(tokens.map((word,index)=>({word:word.toLowerCase().replace(/[.,!?;:]+$/g,''),index,used:false,original:word})));
+      document.getElementById('engExerciseProgress').textContent=`${engSentenceRemedial?'Повтор ошибок':'Предложение'} ${engExerciseIndex+1} из ${engSentenceQueue.length} · всего в уроке ${engSentenceTotal}`;
+      document.getElementById('engExerciseScore').textContent=`Правильно собрано: ${mastered} из ${engSentenceTotal} · нужно ${Math.ceil(engSentenceTotal*0.9)} (${Math.ceil(engSentenceTotal*0.9/engSentenceTotal*100)}%)`;
+      document.getElementById('engPromptRu').textContent=ex.ru;
+      document.getElementById('engExerciseFeedback').className='eng-exercise-feedback eng-hidden';
+      document.getElementById('engExerciseAction').classList.add('eng-hidden');
+      document.getElementById('engLessonComplete').classList.add('eng-hidden');
+      engPaintWordBuilder();
+    }
+    function engPaintWordBuilder(){
+      document.getElementById('engAnswerWords').innerHTML=engSelectedWords.length?engSelectedWords.map((it,pos)=>`<button class="eng-word-chip" onclick="engRemoveWord(${pos})">${it.word}</button>`).join(''):'<span class="eng-answer-empty">Выбирай слова ниже — здесь будет собираться предложение</span>';
+      document.getElementById('engWordBank').innerHTML=engCurrentBank.map((it,i)=>`<button class="eng-bank-word" ${it.used?'disabled':''} onclick="engAddWord(${i})">${it.word}</button>`).join('');
+    }
+    function engAddWord(i){if(engExercisePassed)return;const it=engCurrentBank[i];if(!it||it.used)return;it.used=true;engSelectedWords.push(it);engPaintWordBuilder();if(engSelectedWords.length===engCurrentBank.length)engCheckSentence();}
+    function engRemoveWord(pos){if(engExercisePassed)return;const it=engSelectedWords.splice(pos,1)[0];const bank=engCurrentBank.find(x=>x.index===it.index);if(bank)bank.used=false;engPaintWordBuilder();}
+    function engCheckSentence(){
+      const ex=engSentenceQueue[engExerciseIndex], target=ex.en.trim().split(/\s+/);
+      const isCorrect=engSelectedWords.length===target.length && engSelectedWords.every((it,i)=>engNormalizeToken(it.original)===engNormalizeToken(target[i]));
+      const feedback=document.getElementById('engExerciseFeedback');
+      feedback.className='eng-exercise-feedback'+(isCorrect?'':' fail');
+      if(isCorrect){
+        engExercisePassed=true;
+        engSentenceMastered.add(ex.id);
+        engSentenceFirstCorrect=engSentenceMastered.size;
+        feedback.textContent='Верно! Предложение засчитано.';
+        document.getElementById('engExerciseAction').textContent='Следующее предложение';
+      }else{
+        if(!engSentenceRemedial)engSentenceFirstPass++;
+        engSentenceWrong.push(ex);
+        feedback.textContent='Пока неверно. Предложение вернётся в конец очереди для повторения.';
+        document.getElementById('engExerciseAction').textContent='Понятно';
+      }
+      const percent=Math.round(engSentenceMastered.size/Math.max(1,engSentenceTotal)*100);
+      document.getElementById('engExerciseScore').textContent=`Правильно собрано: ${engSentenceMastered.size} из ${engSentenceTotal} · общий результат ${percent}%`;
+      document.getElementById('engExerciseAction').classList.remove('eng-hidden');
+    }
+    function engExerciseContinue(){engExerciseIndex++;engRenderExercise();}
+    function engCompleteLesson(percent){
+      const key=engLessonKey();engSentenceCompleted=true;engCompletedLessons.add(key);engSaveProgress();engRenderLessons();
+      document.getElementById('engExerciseProgress').textContent='Все предложения выполнены';
+      document.getElementById('engExerciseScore').textContent=`Итоговый результат: ${percent}%`;
+      document.getElementById('engPromptRu').textContent='Поздравляем! Ты набрал необходимое количество правильно собранных предложений.';
+      document.getElementById('engAnswerWords').innerHTML='';document.getElementById('engWordBank').innerHTML='';
+      document.getElementById('engExerciseFeedback').classList.add('eng-hidden');document.getElementById('engExerciseAction').classList.add('eng-hidden');
+      const complete=document.getElementById('engLessonComplete');
+      complete.classList.remove('eng-hidden');complete.textContent=`Урок пройден! Итоговый результат: ${percent}%. Следующий урок темы открыт.`;
+      if(engLessonIndex<engCourse[engTopicIndex].lessons.length-1){const btn=document.createElement('button');btn.className='eng-action';btn.textContent='Перейти к следующему уроку';btn.onclick=()=>engSelectLesson(engLessonIndex+1);complete.appendChild(btn);}else{complete.textContent=`Тема полностью пройдена! Итоговый результат: ${percent}%. Отличная работа.`;}
+    }
+    engRenderTopics();engRenderLessons();
+
+
+    /* INIT */
 window.addEventListener('DOMContentLoaded', () => {
   clearNumberInputOnFocus(document.getElementById('oat'));
   clearNumberInputOnFocus(document.getElementById('vis'));
