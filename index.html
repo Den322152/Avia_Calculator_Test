@@ -1365,8 +1365,13 @@
     .eng-kicker { color:#60a5fa; font-size:10px; font-weight:900; letter-spacing:1.5px; }
     .eng-heading { color:#f8fafc; font-size:19px; font-weight:900; margin:4px 0 5px; }
     .eng-description { color:#aebed1; font-size:12px; line-height:1.5; }
+    .eng-overall-progress { background:#111d2e; border:1px solid #293b53; border-radius:12px; padding:11px 13px; color:#dbeafe; font-size:12px; line-height:1.45; }
+    .eng-progress-track { height:7px; margin-top:8px; border-radius:99px; overflow:hidden; background:#26384f; }
+    .eng-progress-fill { height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,#16a36a,#55d69a); transition:width .25s ease; }
     .eng-topic-tabs { display:flex; gap:6px; overflow-x:auto; padding:1px 1px 6px; scrollbar-width:thin; }
-    .eng-topic-btn { flex:0 0 auto; border:1px solid #334155; background:#1e293b; color:#cbd5e1; border-radius:9px; padding:9px 11px; font-size:11px; font-weight:800; }
+    .eng-topic-btn { flex:0 0 auto; display:flex; flex-direction:column; align-items:flex-start; gap:3px; border:1px solid #334155; background:#1e293b; color:#cbd5e1; border-radius:9px; padding:9px 11px; font-size:11px; font-weight:800; }
+    .eng-topic-btn small { color:#94a3b8; font-size:10px; font-weight:700; }
+    .eng-topic-btn.active small { color:#ffe2e8; }
     .eng-topic-btn.active { background:#c8102e; color:white; border-color:#c8102e; }
     .eng-panel { background:#111d2e; border:1px solid #293b53; border-radius:13px; padding:12px; }
     .eng-panel-title { color:#f1f5f9; font-size:14px; font-weight:900; margin-bottom:9px; }
@@ -1843,14 +1848,6 @@
       </div>
     </div>
 
-    <!-- ==================== ФУТЕР (Версия) ==================== -->
-    <div class="footer">
-      <div class="dot active" title="Загружено"></div>
-      <div class="dot active" title="Версия 3"></div>
-      <span class="version-text">v3.0</span>
-    </div>
-
-
     <!-- ==================== ENG ==================== -->
     <div id="main-eng" class="main-tab-content">
       <div id="engAuthGate" class="eng-account-card">
@@ -1884,6 +1881,7 @@
         <div class="eng-heading">ENG · Авиационный английский</div>
         <div class="eng-description eng-hidden" id="engIntroDescription">Курс лексики и практики для подготовки к ICAO English: авиационные темы, рабочие ситуации, метеоусловия, взаимодействие экипажа и описание нештатных ситуаций.</div>
       </div>
+      <div id="engOverallProgress" class="eng-overall-progress" aria-live="polite"></div>
       <div id="engTopicTabs" class="eng-topic-tabs"></div>
       <div class="eng-panel">
         <div class="eng-panel-title">Уроки темы</div>
@@ -1937,6 +1935,13 @@
         </div>
       </div>
       </div><!-- /engAppContent -->
+    </div>
+
+    <!-- ==================== ФУТЕР (Версия) ==================== -->
+    <div class="footer">
+      <div class="dot active" title="Загружено"></div>
+      <div class="dot active" title="Версия 3"></div>
+      <span class="version-text">v3.0</span>
     </div>
 
   </div>
@@ -4371,10 +4376,11 @@ function resetStopwatch() {
     async function engRegisterStudent(){const first_name=document.getElementById('engFirstName').value.trim(),last_name=document.getElementById('engLastName').value.trim();if(!first_name||!last_name){engSetAuthMessage('Введи имя и фамилию.');return;}engSetAuthMessage('Создаём личный кабинет…');try{const data=await engApi({action:'register',first_name,last_name});engStoreStudent(data);engSetAuthMessage('Регистрация завершена.');await engLoadCloudProgress();}catch(e){engSetAuthMessage('Не удалось зарегистрироваться: '+e.message);}}
     async function engLoginStudent(){const first_name=document.getElementById('engFirstName').value.trim(),last_name=document.getElementById('engLastName').value.trim();if(!first_name||!last_name){engSetAuthMessage('Введи имя и фамилию.');return;}engSetAuthMessage('Входим…');try{const data=await engApi({action:'login',first_name,last_name});engStoreStudent(data);engSetAuthMessage('Вход выполнен. Загружаем прогресс…');await engLoadCloudProgress();}catch(e){engSetAuthMessage('Не удалось войти: '+e.message);}}
     function engLogoutStudent(){engStudent=null;try{localStorage.removeItem('aviaEngStudentNameOnly')}catch(e){}engShowStudent();}
-    async function engLoadCloudProgress(){if(!engStudent)return;const status=document.getElementById('engCloudStatus');try{const data=await engApi({action:'get_progress',first_name:engStudent.first_name,last_name:engStudent.last_name});if(Array.isArray(data.progress)){engCompletedLessons=new Set(data.progress.filter(x=>x.completed).map(x=>x.lesson_id));engSaveProgress();engRenderTopics();engRenderLessons();}status.textContent='Прогресс синхронизирован с сервером.';}catch(e){status.textContent='Нет синхронизации с сервером. Локальный прогресс сохранён.';}}
-    async function engSaveCloudProgress(lessonId,percent){if(!engStudent)return;try{await engApi({action:'save_progress',first_name:engStudent.first_name,last_name:engStudent.last_name,lesson_id:lessonId,completed:true,correct_answers:Math.round(percent),total_answers:100});document.getElementById('engCloudStatus').textContent='Результат урока сохранён на сервере.';}catch(e){document.getElementById('engCloudStatus').textContent='Не удалось отправить результат на сервер. Он остался на этом устройстве.';}}
-    async function engToggleLeaderboard(){const el=document.getElementById('engLeaderboard');if(el.style.display==='block'){el.style.display='none';return;}el.style.display='block';el.textContent='Загружаем рейтинг…';try{const data=await engApi({action:'leaderboard'}),rows=data.leaderboard||[];el.innerHTML=rows.length?'<table><thead><tr><th>Ученик</th><th>Уроки</th><th>Точность</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}. ${String(r.first_name||'')} ${String(r.last_name||'')}</td><td>${r.completed_lessons??0}</td><td>${r.accuracy_percent??0}%</td></tr>`).join('')+'</tbody></table>':'Пока нет результатов.';}catch(e){el.textContent='Не удалось загрузить рейтинг: '+e.message;}}
+    async function engLoadCloudProgress(){if(!engStudent)return;const status=document.getElementById('engCloudStatus');try{const data=await engApi({action:'get_progress',first_name:engStudent.first_name,last_name:engStudent.last_name});if(Array.isArray(data.progress)){engCompletedLessons=new Set(data.progress.filter(x=>x.completed && !String(x.lesson_id||'').startsWith('__sentences__:')).map(x=>x.lesson_id));engSaveProgress();engRenderTopics();engRenderLessons();}status.textContent='Прогресс синхронизирован с сервером.';}catch(e){status.textContent='Нет синхронизации с сервером. Локальный прогресс сохранён.';}}
+    async function engSaveCloudProgress(lessonId,percent,correctSentences,totalSentences){if(!engStudent)return;try{await engApi({action:'save_progress',first_name:engStudent.first_name,last_name:engStudent.last_name,lesson_id:lessonId,completed:true,correct_answers:Math.round(percent),total_answers:100});await engApi({action:'save_sentence_progress',first_name:engStudent.first_name,last_name:engStudent.last_name,lesson_id:'__sentences__:'+lessonId,correct_answers:correctSentences,total_answers:totalSentences});document.getElementById('engCloudStatus').textContent='Прогресс урока и составленные предложения сохранены на сервере.';}catch(e){document.getElementById('engCloudStatus').textContent='Не удалось полностью отправить результат на сервер: '+e.message;}}
+    async function engToggleLeaderboard(){const el=document.getElementById('engLeaderboard');if(el.style.display==='block'){el.style.display='none';return;}el.style.display='block';el.textContent='Загружаем рейтинг…';try{const data=await engApi({action:'leaderboard'}),rows=data.leaderboard||[];el.innerHTML=rows.length?'<table><thead><tr><th>Ученик</th><th>Верно составлено</th><th>Точность</th><th>Уроки</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}. ${String(r.first_name||'')} ${String(r.last_name||'')}</td><td>${r.correct_sentences??0} / ${r.total_sentences??0}</td><td>${r.accuracy_percent??0}%</td><td>${r.completed_lessons??0}</td></tr>`).join('')+'</tbody></table>':'Пока нет результатов.';}catch(e){el.textContent='Не удалось загрузить рейтинг: '+e.message;}}
     engShowStudent();
+    if(engStudent) engLoadCloudProgress();
     function engCurrentLesson(){
       const current=engCourse[engTopicIndex].lessons[engLessonIndex];
       const previous=[];
@@ -4399,11 +4405,19 @@ function resetStopwatch() {
       button.setAttribute('aria-expanded',String(!expanded));
       description.classList.toggle('eng-hidden',expanded);
     }
-    function engRenderTopics(){ document.getElementById('engTopicTabs').innerHTML=engCourse.map((t,i)=>`<button class="eng-topic-btn ${i===engTopicIndex?'active':''}" onclick="engSelectTopic(${i})">${t.name}</button>`).join(''); }
+    function engTopicCompletedCount(topicIndex){return engCourse[topicIndex].lessons.filter((lesson,i)=>engCompletedLessons.has(engLessonKey(topicIndex,i))).length;}
+    function engRenderTopics(){
+      const totalLessons=engCourse.reduce((sum,t)=>sum+t.lessons.length,0);
+      const completedTotal=engCourse.reduce((sum,t,i)=>sum+engTopicCompletedCount(i),0);
+      const percent=totalLessons?Math.round(completedTotal/totalLessons*100):0;
+      const overall=document.getElementById('engOverallProgress');
+      if(overall)overall.innerHTML=`<div><strong>Прогресс курса:</strong> ${completedTotal} из ${totalLessons} уроков · ${percent}%</div><div class="eng-progress-track"><div class="eng-progress-fill" style="width:${percent}%"></div></div>`;
+      document.getElementById('engTopicTabs').innerHTML=engCourse.map((t,i)=>{const done=engTopicCompletedCount(i),total=t.lessons.length;return `<button class="eng-topic-btn ${i===engTopicIndex?'active':''}" onclick="engSelectTopic(${i})"><span>${t.name}</span><small>${done}/${total} уроков · ${total?Math.round(done/total*100):0}%</small></button>`;}).join('');
+    }
     function engSelectTopic(i){ engTopicIndex=i; engLessonIndex=0; engRenderTopics(); engRenderLessons(); document.getElementById('engLessonArea').classList.add('eng-hidden'); }
     function engRenderLessons(){
       const lessons=engCourse[engTopicIndex].lessons;
-      document.getElementById('engLessonList').innerHTML=lessons.map((l,i)=>{const unlocked=engIsLessonUnlocked(engTopicIndex,i),done=engCompletedLessons.has(engLessonKey(engTopicIndex,i));return `<button class="eng-lesson-btn ${i===engLessonIndex?'active':''}" ${unlocked?'':'disabled'} onclick="engSelectLesson(${i})"><span>${i+1}. ${l.title}</span><small>${done?'✓ Пройден':unlocked?`${l.words.length} слов · 100 предложений`:'🔒 Закрыт'}</small></button>`;}).join('');
+      document.getElementById('engLessonList').innerHTML=lessons.map((l,i)=>{const unlocked=engIsLessonUnlocked(engTopicIndex,i),done=engCompletedLessons.has(engLessonKey(engTopicIndex,i));const materials=`Материалы: ${l.words.length} слов · чтение · 100 предложений`;return `<button class="eng-lesson-btn ${i===engLessonIndex?'active':''}" ${unlocked?'':'disabled'} onclick="engSelectLesson(${i})"><span>${i+1}. ${l.title}</span><small>${done?'✓ Пройден · ':unlocked?'':'🔒 Закрыт · '}${materials}</small></button>`;}).join('');
     }
     function engShowStage(stage){
       const ids=['engWordsArea','engQuizArea','engReadingArea','engBuildArea'];
@@ -4640,7 +4654,7 @@ function resetStopwatch() {
     }
     function engExerciseContinue(){engExerciseIndex++;engRenderExercise();}
     function engCompleteLesson(percent){
-      const key=engLessonKey();engSentenceCompleted=true;engCompletedLessons.add(key);engSaveProgress();engRenderLessons();engSaveCloudProgress(key,percent);
+      const key=engLessonKey();engSentenceCompleted=true;engCompletedLessons.add(key);engSaveProgress();engRenderTopics();engRenderLessons();engSaveCloudProgress(key,percent,engSentenceMastered.size,engSentenceTotal);
       document.getElementById('engExerciseProgress').textContent='Все предложения выполнены';
       document.getElementById('engExerciseScore').textContent=`Итоговый результат: ${percent}%`;
       document.getElementById('engPromptRu').textContent='Поздравляем! Ты набрал необходимое количество правильно собранных предложений.';
