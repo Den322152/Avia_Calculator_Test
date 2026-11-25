@@ -1,4 +1,4 @@
-const CACHE_NAME = 'avia-calc-v3.5'; // Версия кэша. МЕНЯЙТЕ при каждом обновлении!
+const CACHE_NAME = 'avia-calc-v4.0'; // Версия кэша. МЕНЯЙТЕ при каждом обновлении!
 const ASSETS = [
   './',
   './index.html',
