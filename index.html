@@ -4603,6 +4603,23 @@ async function engToggleLeaderboard() {
 }
 
 engShowStudent();
+    // Исправление кнопок входа и регистрации ENG
+const engOldLoginButton = document.getElementById('engShowLoginButton');
+const engRegisterModeButton = document.getElementById('engRegisterModeButton');
+
+if (engOldLoginButton) {
+  engOldLoginButton.onclick = function(event) {
+    event.preventDefault();
+    engShowLogin();
+  };
+}
+
+if (engRegisterModeButton) {
+  engRegisterModeButton.onclick = function(event) {
+    event.preventDefault();
+    engShowRegister();
+  };
+}
     function engCurrentLesson(){
       const current=engCourse[engTopicIndex].lessons[engLessonIndex];
       const previous=[];
