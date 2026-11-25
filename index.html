@@ -1461,6 +1461,15 @@
 
 
     .eng-account-card{background:#14263a;border:1px solid #36516b;border-radius:16px;padding:18px;margin:12px 0;color:#f1f5f9}
+    .eng-account-compact{padding:7px 9px;border-radius:10px;margin:6px 0}
+    .eng-account-row{display:flex;align-items:center;gap:8px;width:100%;min-width:0}
+    .eng-account-row strong{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+    .eng-sync-dot{width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:#dc3545;box-shadow:0 0 0 2px #ffffff18}
+    .eng-sync-dot.online{background:#22c55e}.eng-sync-dot.offline{background:#ef4444}
+    .eng-rating-btn,.eng-logout-btn{border:0;border-radius:7px;padding:6px 9px;color:#fff;font-weight:700;font-size:11px;white-space:nowrap;flex:0 0 auto}
+    .eng-rating-btn{background:#30465d}.eng-logout-btn{background:#8b3542;padding:6px 7px}
+    .eng-cloud-status{display:none}
+    @media(max-width:360px){.eng-account-row{gap:5px}.eng-account-row strong{font-size:12px}.eng-rating-btn{font-size:10px;padding:6px 7px}.eng-logout-btn{font-size:10px;padding:6px} }
     .eng-account-card h3{margin:0 0 8px;font-size:19px}.eng-account-card p{color:#b9c8d8;line-height:1.5;margin:8px 0 14px}
     .eng-account-card input{display:block;width:100%;box-sizing:border-box;margin:9px 0;padding:13px;border-radius:10px;border:1px solid #526b84;background:#0d1b2a;color:#fff;font-size:16px}
     .eng-account-actions{display:flex;gap:8px;flex-wrap:wrap}.eng-account-actions button,.eng-account-btn{border:0;border-radius:10px;padding:12px 15px;background:#17865d;color:white;font-weight:800;font-size:14px}
@@ -1866,11 +1875,15 @@
         </div>
         <div id="engAuthMessage" class="eng-account-message" aria-live="polite"></div>
       </div>
-      <div id="engStudentPanel" class="eng-account-card" style="display:none">
-        <div class="eng-account-top"><div><strong id="engStudentName"></strong><div class="eng-account-small">Личный кабинет ученика</div></div><button type="button" class="eng-account-btn" onclick="engLogoutStudent()">Выйти</button></div>
-        <div class="eng-account-actions" style="margin-top:12px"><button type="button" class="secondary" onclick="engToggleLeaderboard()">Общий рейтинг</button></div>
+      <div id="engStudentPanel" class="eng-account-card eng-account-compact" style="display:none">
+        <div class="eng-account-row">
+          <span id="engSyncDot" class="eng-sync-dot offline" title="Нет синхронизации" aria-label="Нет синхронизации"></span>
+          <strong id="engStudentName"></strong>
+          <button type="button" class="eng-rating-btn" onclick="engToggleLeaderboard()">Общий рейтинг</button>
+          <button type="button" class="eng-logout-btn" onclick="engLogoutStudent()">Выйти</button>
+        </div>
         <div id="engLeaderboard" class="eng-leaderboard"></div>
-        <div id="engCloudStatus" class="eng-account-small" style="margin-top:10px">Подключение к серверу…</div>
+        <div id="engCloudStatus" class="eng-cloud-status" aria-live="polite"></div>
       </div>
       <div id="engAppContent" style="display:none">
       <div class="eng-intro">
@@ -2018,6 +2031,8 @@
       document.querySelectorAll('.main-tab-btn').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       if (btnElement) btnElement.classList.add('active');
+      try{localStorage.setItem('aviaEngLastMainTab',tabId)}catch(e){}
+      if(typeof engPersistSession==='function')engPersistSession();
     }
 
     let currentSubTab = 'tab1';
@@ -4346,7 +4361,7 @@ function resetStopwatch() {
       ]
     ];
     engCourse.forEach((topic,ti)=>topic.lessons.forEach((lesson,li)=>lesson.words.push(...engIcaoCore[ti][li])));
-    let engTopicIndex=0, engLessonIndex=0;
+    let engTopicIndex=0, engLessonIndex=0, engCurrentStage=0;
     let engExerciseIndex=0, engSelectedWords=[], engExercisePassed=false, engCurrentBank=[];
     let engReadingTexts=[], engReadingIndex=0;
     let engCompletedLessons=new Set();
@@ -4358,7 +4373,9 @@ function resetStopwatch() {
     function engLessonKey(t=engTopicIndex,l=engLessonIndex){ return engCourse[t].id+':'+l; }
     function engWordKey(i){ return engLessonKey()+':'+i; }
     function engIsLessonUnlocked(t,l){ return l===0 || engCompletedLessons.has(engLessonKey(t,l-1)); }
-    function engSaveProgress(){ try { localStorage.setItem('aviaEngCompletedLessons',JSON.stringify([...engCompletedLessons])); localStorage.setItem('aviaEngKnownWords',JSON.stringify(engKnownWords)); } catch(e) {} }
+    function engSaveProgress(){ try { localStorage.setItem('aviaEngCompletedLessons',JSON.stringify([...engCompletedLessons])); localStorage.setItem('aviaEngKnownWords',JSON.stringify(engKnownWords)); engPersistSession(); } catch(e) {} }
+    function engPersistSession(){try{const state={topic:engTopicIndex,lesson:engLessonIndex,stage:engCurrentStage,mainTab:document.querySelector('.main-tab-content.active')?.id||'main-eng',lessonOpen:!document.getElementById('engLessonArea')?.classList.contains('eng-hidden'),wordReviewIndex:engWordReviewIndex,quizDirection:engQuizDirection,quizQueue:engQuizQueue,quizIndex:engQuizIndex,quizCorrect:engQuizCorrect,quizAnswered:engQuizAnswered,quizScheduled:[...engQuizScheduled],readingIndex:engReadingIndex,exerciseIndex:engExerciseIndex,sentenceQueue:engSentenceQueue,sentenceWrong:engSentenceWrong,sentenceMastered:[...engSentenceMastered],sentenceRemedial:engSentenceRemedial,sentenceCompleted:engSentenceCompleted,sentenceTotal:engSentenceTotal,selectedWords:engSelectedWords,currentBank:engCurrentBank,exercisePassed:engExercisePassed};localStorage.setItem('aviaEngSessionState',JSON.stringify(state));}catch(e){}}
+    function engRestoreSession(){try{const st=JSON.parse(localStorage.getItem('aviaEngSessionState')||'null');if(!st)return;engTopicIndex=Math.max(0,Math.min(engCourse.length-1,Number(st.topic)||0));engLessonIndex=Math.max(0,Math.min(engCourse[engTopicIndex].lessons.length-1,Number(st.lesson)||0));engCurrentStage=Number(st.stage)||0;engRenderTopics();engRenderLessons();if(st.lessonOpen){engReadingTexts=engBuildReadingTexts(engCurrentLesson());engReadingIndex=Math.max(0,Number(st.readingIndex)||0);engWordReviewIndex=Math.max(0,Number(st.wordReviewIndex)||0);engQuizDirection=Number(st.quizDirection)||0;engQuizQueue=Array.isArray(st.quizQueue)?st.quizQueue:[];engQuizIndex=Number(st.quizIndex)||0;engQuizCorrect=Number(st.quizCorrect)||0;engQuizAnswered=!!st.quizAnswered;engQuizScheduled=new Set(st.quizScheduled||[]);engExerciseIndex=Number(st.exerciseIndex)||0;engSentenceQueue=Array.isArray(st.sentenceQueue)?st.sentenceQueue:[];engSentenceWrong=Array.isArray(st.sentenceWrong)?st.sentenceWrong:[];engSentenceMastered=new Set(st.sentenceMastered||[]);engSentenceRemedial=!!st.sentenceRemedial;engSentenceCompleted=!!st.sentenceCompleted;engSentenceTotal=Number(st.sentenceTotal)||100;engSelectedWords=Array.isArray(st.selectedWords)?st.selectedWords:[];engCurrentBank=Array.isArray(st.currentBank)?st.currentBank:[];engExercisePassed=!!st.exercisePassed;document.getElementById('engLessonArea').classList.remove('eng-hidden');document.getElementById('engLessonTitle').textContent=`Урок ${engLessonIndex+1}. ${engCurrentLesson().title}`;engShowStage(engCurrentStage);if(engCurrentStage===0)engRenderWordCard();else if(engCurrentStage===1)engRenderQuiz();else if(engCurrentStage===2)engRenderReading();else{engPaintWordBuilder();if(engExercisePassed){document.getElementById('engExerciseAction').classList.remove('eng-hidden');document.getElementById('engExerciseFeedback').classList.remove('eng-hidden');}}}if(st.mainTab&&document.getElementById(st.mainTab)){document.querySelectorAll('.main-tab-content').forEach(el=>el.classList.toggle('active',el.id===st.mainTab));document.querySelectorAll('.main-tab-btn').forEach(el=>el.classList.toggle('active',el.getAttribute('onclick')?.includes(st.mainTab)));}}catch(e){console.warn('ENG session restore:',e)}}
     // ENG student account + cloud progress. Name-only access; AVIA calculator and HOT timer are untouched.
     const ENG_API_URL='https://mybhzhaqqqgofjutxdep.supabase.co/functions/v1/bright-function';
     const ENG_PUBLIC_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im15Ymh6aHFxcWdvZmp1dHhkZXAiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc5NTUzNDY4NCwiZXhwIjoyMTExMTEwNjg0fQ.5KNtmtEljR5urjyURfBqZmeRRxzU4gneRXNWTGsKSRQ';
@@ -4376,8 +4393,18 @@ function resetStopwatch() {
     async function engRegisterStudent(){const first_name=document.getElementById('engFirstName').value.trim(),last_name=document.getElementById('engLastName').value.trim();if(!first_name||!last_name){engSetAuthMessage('Введи имя и фамилию.');return;}engSetAuthMessage('Создаём личный кабинет…');try{const data=await engApi({action:'register',first_name,last_name});engStoreStudent(data);engSetAuthMessage('Регистрация завершена.');await engLoadCloudProgress();}catch(e){engSetAuthMessage('Не удалось зарегистрироваться: '+e.message);}}
     async function engLoginStudent(){const first_name=document.getElementById('engFirstName').value.trim(),last_name=document.getElementById('engLastName').value.trim();if(!first_name||!last_name){engSetAuthMessage('Введи имя и фамилию.');return;}engSetAuthMessage('Входим…');try{const data=await engApi({action:'login',first_name,last_name});engStoreStudent(data);engSetAuthMessage('Вход выполнен. Загружаем прогресс…');await engLoadCloudProgress();}catch(e){engSetAuthMessage('Не удалось войти: '+e.message);}}
     function engLogoutStudent(){engStudent=null;try{localStorage.removeItem('aviaEngStudentNameOnly')}catch(e){}engShowStudent();}
-    async function engLoadCloudProgress(){if(!engStudent)return;const status=document.getElementById('engCloudStatus');try{const data=await engApi({action:'get_progress',first_name:engStudent.first_name,last_name:engStudent.last_name});if(Array.isArray(data.progress)){engCompletedLessons=new Set(data.progress.filter(x=>x.completed && !String(x.lesson_id||'').startsWith('__sentences__:')).map(x=>x.lesson_id));engSaveProgress();engRenderTopics();engRenderLessons();}status.textContent='Прогресс синхронизирован с сервером.';}catch(e){status.textContent='Нет синхронизации с сервером. Локальный прогресс сохранён.';}}
-    async function engSaveCloudProgress(lessonId,percent,correctSentences,totalSentences){if(!engStudent)return;try{await engApi({action:'save_progress',first_name:engStudent.first_name,last_name:engStudent.last_name,lesson_id:lessonId,completed:true,correct_answers:Math.round(percent),total_answers:100});await engApi({action:'save_sentence_progress',first_name:engStudent.first_name,last_name:engStudent.last_name,lesson_id:'__sentences__:'+lessonId,correct_answers:correctSentences,total_answers:totalSentences});document.getElementById('engCloudStatus').textContent='Прогресс урока и составленные предложения сохранены на сервере.';}catch(e){document.getElementById('engCloudStatus').textContent='Не удалось полностью отправить результат на сервер: '+e.message;}}
+    function engSetSyncState(ok){const dot=document.getElementById('engSyncDot');if(!dot)return;dot.classList.toggle('online',!!ok);dot.classList.toggle('offline',!ok);dot.title=ok?'Данные синхронизированы':'Нет синхронизации';dot.setAttribute('aria-label',dot.title);}
+    function engQueueCloudItem(item){try{const q=JSON.parse(localStorage.getItem('aviaEngPendingSync')||'[]');const key=(item.action||'save_sentence_progress')+':'+item.lesson_id;const at=q.findIndex(x=>(x.action||'save_sentence_progress')+':'+x.lesson_id===key);if(at>=0)q[at]=item;else q.push(item);localStorage.setItem('aviaEngPendingSync',JSON.stringify(q));}catch(e){}}
+    async function engSendCloudItem(item,keepalive=false){if(!engStudent||!navigator.onLine)throw new Error('offline');const payload={action:item.action||'save_sentence_progress',first_name:engStudent.first_name,last_name:engStudent.last_name,lesson_id:item.lesson_id,completed:!!item.completed,correct_answers:item.correct_answers,total_answers:item.total_answers};if(keepalive){fetch(ENG_API_URL,{method:'POST',headers:engAuthHeaders(),body:JSON.stringify(payload),keepalive:true}).catch(()=>{});return;}await engApi(payload);}
+    async function engSyncPending(){if(!engStudent||!navigator.onLine){engSetSyncState(false);return;}let q=[];try{q=JSON.parse(localStorage.getItem('aviaEngPendingSync')||'[]')}catch(e){}if(!q.length){engSetSyncState(true);return;}try{for(const item of q)await engSendCloudItem(item);localStorage.removeItem('aviaEngPendingSync');engSetSyncState(true);}catch(e){engSetSyncState(false);}}
+    async function engLoadCloudProgress(){if(!engStudent)return;engSetSyncState(false);try{const data=await engApi({action:'get_progress',first_name:engStudent.first_name,last_name:engStudent.last_name});if(Array.isArray(data.progress)){engCompletedLessons=new Set([...engCompletedLessons,...data.progress.filter(x=>x.completed&&!String(x.lesson_id||'').startsWith('__sentences__:')).map(x=>x.lesson_id)]);engSaveProgress();engRenderTopics();engRenderLessons();}engSetSyncState(true);await engSyncPending();}catch(e){engSetSyncState(false);}}
+    async function engSaveCloudProgress(lessonId,percent,correctSentences,totalSentences){if(!engStudent)return;engQueueCloudItem({action:'save_sentence_progress',lesson_id:'__sentences__:'+lessonId,correct_answers:correctSentences,total_answers:totalSentences});engQueueCloudItem({action:'save_progress',lesson_id:lessonId,completed:true,correct_answers:Math.round(percent),total_answers:100});await engSyncPending();}
+    async function engSyncCurrentSentenceScore(keepalive=false){if(!engStudent)return;const lessonId=engLessonKey();if(engSentenceMastered.size||engSentenceQueue.length){const item={lesson_id:'__sentences__:'+lessonId,correct_answers:engSentenceMastered.size,total_answers:engSentenceTotal||100};engQueueCloudItem(item);if(keepalive){let q=[];try{q=JSON.parse(localStorage.getItem('aviaEngPendingSync')||'[]')}catch(e){}q.forEach(x=>engSendCloudItem(x,true));}else await engSyncPending();}}
+    setInterval(()=>{engPersistSession();engSyncCurrentSentenceScore(false);},300000);
+    setInterval(()=>engPersistSession(),1500);
+    window.addEventListener('online',()=>engSyncPending());window.addEventListener('offline',()=>engSetSyncState(false));
+    window.addEventListener('pagehide',()=>{engPersistSession();engSyncCurrentSentenceScore(true);});
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'){engPersistSession();engSyncCurrentSentenceScore(true);}});
     async function engToggleLeaderboard(){const el=document.getElementById('engLeaderboard');if(el.style.display==='block'){el.style.display='none';return;}el.style.display='block';el.textContent='Загружаем рейтинг…';try{const data=await engApi({action:'leaderboard'}),rows=data.leaderboard||[];el.innerHTML=rows.length?'<table><thead><tr><th>Ученик</th><th>Верно составлено</th><th>Точность</th><th>Уроки</th></tr></thead><tbody>'+rows.map((r,i)=>`<tr><td>${i+1}. ${String(r.first_name||'')} ${String(r.last_name||'')}</td><td>${r.correct_sentences??0} / ${r.total_sentences??0}</td><td>${r.accuracy_percent??0}%</td><td>${r.completed_lessons??0}</td></tr>`).join('')+'</tbody></table>':'Пока нет результатов.';}catch(e){el.textContent='Не удалось загрузить рейтинг: '+e.message;}}
     engShowStudent();
     if(engStudent) engLoadCloudProgress();
@@ -4414,7 +4441,7 @@ function resetStopwatch() {
       if(overall)overall.innerHTML=`<div><strong>Прогресс курса:</strong> ${completedTotal} из ${totalLessons} уроков · ${percent}%</div><div class="eng-progress-track"><div class="eng-progress-fill" style="width:${percent}%"></div></div>`;
       document.getElementById('engTopicTabs').innerHTML=engCourse.map((t,i)=>{const done=engTopicCompletedCount(i),total=t.lessons.length;return `<button class="eng-topic-btn ${i===engTopicIndex?'active':''}" onclick="engSelectTopic(${i})"><span>${t.name}</span><small>${done}/${total} уроков · ${total?Math.round(done/total*100):0}%</small></button>`;}).join('');
     }
-    function engSelectTopic(i){ engTopicIndex=i; engLessonIndex=0; engRenderTopics(); engRenderLessons(); document.getElementById('engLessonArea').classList.add('eng-hidden'); }
+    function engSelectTopic(i){ engTopicIndex=i; engLessonIndex=0; engRenderTopics(); engRenderLessons(); document.getElementById('engLessonArea').classList.add('eng-hidden'); engPersistSession(); }
     function engRenderLessons(){
       const lessons=engCourse[engTopicIndex].lessons;
       document.getElementById('engLessonList').innerHTML=lessons.map((l,i)=>{const unlocked=engIsLessonUnlocked(engTopicIndex,i),done=engCompletedLessons.has(engLessonKey(engTopicIndex,i));const materials=`Материалы: ${l.words.length} слов · чтение · 100 предложений`;return `<button class="eng-lesson-btn ${i===engLessonIndex?'active':''}" ${unlocked?'':'disabled'} onclick="engSelectLesson(${i})"><span>${i+1}. ${l.title}</span><small>${done?'✓ Пройден · ':unlocked?'':'🔒 Закрыт · '}${materials}</small></button>`;}).join('');
@@ -4430,7 +4457,7 @@ function resetStopwatch() {
       if(stage===2){engShowStage(2);return;}
       if(stage===3){engStartSentences();return;}
     }
-    function engSelectLesson(i){ if(!engIsLessonUnlocked(engTopicIndex,i))return; engTopicIndex=engTopicIndex; engLessonIndex=i; engRenderLessons(); engRenderLesson(); }
+    function engSelectLesson(i){ if(!engIsLessonUnlocked(engTopicIndex,i))return; engLessonIndex=i; engRenderLessons(); engRenderLesson(); engPersistSession(); }
     function engBuildReadingTexts(lesson){
       const entries=lesson.words.map(w=>({en:(w[2]||'').trim(),ru:(w[3]||'').trim()})).filter(x=>x.en&&x.ru);
       const openings=[
@@ -4482,7 +4509,7 @@ function resetStopwatch() {
     }
     function engChangeReading(delta){
       engReadingIndex=Math.max(0,Math.min(engReadingTexts.length-1,engReadingIndex+delta));
-      engRenderReading();
+      engRenderReading();engPersistSession();
     }
     function engRenderLesson(){
       const l=engCurrentLesson();
@@ -4501,7 +4528,7 @@ function resetStopwatch() {
     }
     function engMarkWord(known){
       engKnownMap()[engCurrentLesson().words[engWordReviewIndex][0]]=!!known; engSaveProgress();
-      if(engWordReviewIndex<engCurrentLesson().words.length-1){engWordReviewIndex++;engRenderWordCard();}
+      if(engWordReviewIndex<engCurrentLesson().words.length-1){engWordReviewIndex++;engRenderWordCard();engPersistSession();}
       else engStartQuiz(0);
     }
     function engStartQuiz(direction){
@@ -4514,7 +4541,7 @@ function resetStopwatch() {
       engQuizScheduled=new Set();
       document.getElementById('engQuizTitle').textContent=direction===0?'Проверка 1 · английский → русский':'Проверка 2 · русский → английский';
       document.getElementById('engQuizInstruction').textContent=direction===0?'Увидишь английское слово — выбери правильный русский перевод.':'Теперь наоборот: увидишь русский перевод — выбери английское слово.';
-      engShowStage(1); engRenderQuiz();
+      engShowStage(1); engRenderQuiz();engPersistSession();
     }
     function engRenderQuiz(){
       if(engQuizIndex>=engQuizQueue.length){
@@ -4562,8 +4589,9 @@ function resetStopwatch() {
       }else{
         next.classList.remove('eng-hidden');
       }
+      engPersistSession();
     }
-    function engQuizContinue(){if(!engQuizAnswered)return;engQuizIndex++;engRenderQuiz();}
+    function engQuizContinue(){if(!engQuizAnswered)return;engQuizIndex++;engRenderQuiz();engPersistSession();}
     function engToggleTranslation(){const el=document.getElementById('engReadingTranslation');const hidden=el.classList.toggle('eng-hidden');document.getElementById('engTranslationButton').textContent=hidden?'Показать перевод':'Скрыть перевод';}
     function engStartSentences(){
       if(engSentenceQueue.length && !engSentenceCompleted){engShowStage(3);engRenderExercise();return;}
@@ -4594,7 +4622,7 @@ function resetStopwatch() {
       engSentenceQueue=engShuffle(engSentenceQueue).slice(0,Math.max(100,engSentenceQueue.length));
       engSentenceTotal=engSentenceQueue.length;
       engSentenceWrong=[];engSentenceFirstPass=0;engSentenceFirstCorrect=0;engSentenceMastered=new Set();engSentenceRemedial=false;engSentenceCompleted=false;engExerciseIndex=0;
-      engShowStage(3);engRenderExercise();
+      engShowStage(3);engRenderExercise();engPersistSession();
     }
     function engShuffle(list){const a=list.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
     function engNormalizeToken(v){return v.toLowerCase().replace(/^[^a-z0-9']+|[^a-z0-9']+$/gi,'');}
@@ -4629,8 +4657,8 @@ function resetStopwatch() {
       document.getElementById('engAnswerWords').innerHTML=engSelectedWords.length?engSelectedWords.map((it,pos)=>`<button class="eng-word-chip" onclick="engRemoveWord(${pos})">${it.word}</button>`).join(''):'<span class="eng-answer-empty">Выбирай слова ниже — здесь будет собираться предложение</span>';
       document.getElementById('engWordBank').innerHTML=engCurrentBank.map((it,i)=>`<button class="eng-bank-word" ${it.used?'disabled':''} onclick="engAddWord(${i})">${it.word}</button>`).join('');
     }
-    function engAddWord(i){if(engExercisePassed)return;const it=engCurrentBank[i];if(!it||it.used)return;it.used=true;engSelectedWords.push(it);engPaintWordBuilder();if(engSelectedWords.length===engCurrentBank.length)engCheckSentence();}
-    function engRemoveWord(pos){if(engExercisePassed)return;const it=engSelectedWords.splice(pos,1)[0];const bank=engCurrentBank.find(x=>x.index===it.index);if(bank)bank.used=false;engPaintWordBuilder();}
+    function engAddWord(i){if(engExercisePassed)return;const it=engCurrentBank[i];if(!it||it.used)return;it.used=true;engSelectedWords.push(it);engPaintWordBuilder();if(engSelectedWords.length===engCurrentBank.length)engCheckSentence();engPersistSession();}
+    function engRemoveWord(pos){if(engExercisePassed)return;const it=engSelectedWords.splice(pos,1)[0];const bank=engCurrentBank.find(x=>x.index===it.index);if(bank)bank.used=false;engPaintWordBuilder();engPersistSession();}
     function engCheckSentence(){
       const ex=engSentenceQueue[engExerciseIndex], target=ex.en.trim().split(/\s+/);
       const isCorrect=engSelectedWords.length===target.length && engSelectedWords.every((it,i)=>engNormalizeToken(it.original)===engNormalizeToken(target[i]));
@@ -4651,8 +4679,11 @@ function resetStopwatch() {
       const percent=Math.round(engSentenceMastered.size/Math.max(1,engSentenceTotal)*100);
       document.getElementById('engExerciseScore').textContent=`Правильно собрано: ${engSentenceMastered.size} из ${engSentenceTotal} · общий результат ${percent}%`;
       document.getElementById('engExerciseAction').classList.remove('eng-hidden');
+      engPersistSession();
+      const pendingScore={lesson_id:'__sentences__:'+engLessonKey(),correct_answers:engSentenceMastered.size,total_answers:engSentenceTotal||100};
+      engQueueCloudItem(pendingScore);
     }
-    function engExerciseContinue(){engExerciseIndex++;engRenderExercise();}
+    function engExerciseContinue(){engExerciseIndex++;engRenderExercise();engPersistSession();}
     function engCompleteLesson(percent){
       const key=engLessonKey();engSentenceCompleted=true;engCompletedLessons.add(key);engSaveProgress();engRenderTopics();engRenderLessons();engSaveCloudProgress(key,percent,engSentenceMastered.size,engSentenceTotal);
       document.getElementById('engExerciseProgress').textContent='Все предложения выполнены';
@@ -4665,6 +4696,8 @@ function resetStopwatch() {
       if(engLessonIndex<engCourse[engTopicIndex].lessons.length-1){const btn=document.createElement('button');btn.className='eng-action';btn.textContent='Перейти к следующему уроку';btn.onclick=()=>engSelectLesson(engLessonIndex+1);complete.appendChild(btn);}else{complete.textContent=`Тема полностью пройдена! Итоговый результат: ${percent}%. Отличная работа.`;}
     }
     engRenderTopics();engRenderLessons();
+    engRestoreSession();
+    if(engStudent){engSetSyncState(navigator.onLine);engSyncPending();}
 
 
     /* INIT */
