@@ -1859,12 +1859,10 @@
         <div id="engAuthFields">
           <input id="engFirstName" autocomplete="given-name" placeholder="Имя" maxlength="40">
           <input id="engLastName" autocomplete="family-name" placeholder="Фамилия" maxlength="40">
-          <input id="engPin" type="password" inputmode="numeric" autocomplete="new-password" placeholder="PIN — 4 цифры" maxlength="4">
-          <input id="engPinConfirm" type="password" inputmode="numeric" autocomplete="new-password" placeholder="Повтори PIN" maxlength="4">
+          <input id="engAccessCode" autocomplete="off" placeholder="Персональный код (для входа)" maxlength="32" style="display:none">
           <div class="eng-account-actions">
-            <button type="button" id="engRegisterButton" onclick="engRegisterStudent()">Регистрация</button>
-            <button type="button" class="secondary" id="engShowLoginButton" onclick="engShowLogin()">У меня уже есть аккаунт</button>
-            <button type="button" class="secondary" id="engRegisterModeButton" onclick="engShowRegister()" style="display:none">Регистрация нового ученика</button>
+            <button type="button" onclick="engRegisterStudent()">Регистрация</button>
+            <button type="button" class="secondary" onclick="engShowLogin()">У меня есть код</button>
             <button type="button" class="secondary" id="engLoginButton" onclick="engLoginStudent()" style="display:none">Войти</button>
           </div>
         </div>
@@ -1872,6 +1870,7 @@
       </div>
       <div id="engStudentPanel" class="eng-account-card" style="display:none">
         <div class="eng-account-top"><div><strong id="engStudentName"></strong><div class="eng-account-small">Личный кабинет ученика</div></div><button type="button" class="eng-account-btn" onclick="engLogoutStudent()">Выйти</button></div>
+        <p>Твой персональный код для входа на другом устройстве:</p><div id="engStudentCode" class="eng-account-code"></div>
         <div class="eng-account-actions" style="margin-top:12px"><button type="button" class="secondary" onclick="engToggleLeaderboard()">Общий рейтинг</button></div>
         <div id="engLeaderboard" class="eng-leaderboard"></div>
         <div id="engCloudStatus" class="eng-account-small" style="margin-top:10px">Подключение к серверу…</div>
@@ -4354,8 +4353,9 @@ function resetStopwatch() {
     function engLessonKey(t=engTopicIndex,l=engLessonIndex){ return engCourse[t].id+':'+l; }
     function engWordKey(i){ return engLessonKey()+':'+i; }
     function engIsLessonUnlocked(t,l){ return l===0 || engCompletedLessons.has(engLessonKey(t,l-1)); }
-    function engSaveProgress(){ try { localStorage.setItem('aviaEngCompletedLessons',JSON.stringify([...engCompletedLessons])); localStorage.setItem('aviaEngKnownWords',JSON.stringify(engKnownWords)); } catch(
-      // ENG: вход и регистрация только по имени и фамилии
+    function engSaveProgress(){ try { localStorage.setItem('aviaEngCompletedLessons',JSON.stringify([...engCompletedLessons])); localStorage.setItem('aviaEngKnownWords',JSON.stringify(engKnownWords)); } catch(e) {} }
+    // ENG student account + cloud progress. The AVIA calculator and HOT timer are not involved.
+    // ENG: вход и регистрация только по имени и фамилии
 const ENG_API_URL = 'https://mybhzhaqqqgofjutxdep.supabase.co/functions/v1/bright-function';
 const ENG_PUBLIC_KEY = 'sb_publishable_8Px81l1bhLF03LUk-HGOOQ_d8yLHMn';
 
